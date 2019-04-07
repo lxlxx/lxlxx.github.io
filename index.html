@@ -262,6 +262,459 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lxlxx.github.io/2019/04/07/SQL-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="懷谷">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IT 學習筆記">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/07/SQL-2/" itemprop="url">SQL_2</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-07T00:56:40-04:00">
+                2019-04-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1NF"><a href="#1NF" class="headerlink" title="1NF"></a>1NF</h1><ol>
+<li>Eliminate repeating groups in table ( 消滅多重記錄 每一個Cell 只有一組資料 )</li>
+<li>Identify each set of related data with a primary key (每一條資料都需要獨一無二的主鍵)</li>
+</ol>
+<p>Trading Table</p>
+<table>
+<thead>
+<tr>
+<th>Customer Name</th>
+<th>Date</th>
+<th>Number</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mr. Chan</td>
+<td>Monday</td>
+<td>19.00, -28.00</td>
+</tr>
+<tr>
+<td>Mr. Wong</td>
+<td>Wed</td>
+<td>-80.00, -80.00</td>
+</tr>
+<tr>
+<td>Mr. Lee</td>
+<td>Friday</td>
+<td>100.00, -40.00, 150</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>after 1NF.1<br>Trading Table</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Customer Name</th>
+<th>Date</th>
+<th>Number</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mr. Chan</td>
+<td>Monday</td>
+<td>19.00</td>
+</tr>
+<tr>
+<td>Mr. Chan</td>
+<td>Monday</td>
+<td>-28.00</td>
+</tr>
+<tr>
+<td>Mr. Wong</td>
+<td>Wed</td>
+<td>-80.00</td>
+</tr>
+<tr>
+<td>Mr. Wong</td>
+<td>Wed</td>
+<td>-80.00</td>
+</tr>
+<tr>
+<td>Mr. Lee</td>
+<td>Friday</td>
+<td>100.00</td>
+</tr>
+<tr>
+<td>Mr. Lee</td>
+<td>Friday</td>
+<td>-40.00</td>
+</tr>
+<tr>
+<td>Mr. Lee</td>
+<td>Friday</td>
+<td>150</td>
+</tr>
+</tbody>
+</table>
+<ol start="2">
+<li>after 1NF.2<br>Trading Table</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>primary key</th>
+<th>Customer Name</th>
+<th>Date</th>
+<th>Number</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Mr. Chan</td>
+<td>Monday</td>
+<td>19.00</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Mr. Chan</td>
+<td>Monday</td>
+<td>-28.00</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Mr. Wong</td>
+<td>Wed</td>
+<td>-80.00</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Mr. Wong</td>
+<td>Wed</td>
+<td>-80.00</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Mr. Lee</td>
+<td>Friday</td>
+<td>100.00</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Mr. Lee</td>
+<td>Friday</td>
+<td>-40.00</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Mr. Lee</td>
+<td>Friday</td>
+<td>150</td>
+</tr>
+</tbody>
+</table>
+<h1 id="2NF"><a href="#2NF" class="headerlink" title="2NF"></a>2NF</h1><ol>
+<li>be in firsts normal form (1NF) (符合1NF)</li>
+<li>All attributes (Non-key Columns) dependent on the key (所有資料都是完全功能相依於主鍵 資料需直接相關於主鍵) </li>
+</ol>
+<p>Price Table</p>
+<table>
+<thead>
+<tr>
+<th>Item ID (primary key)</th>
+<th>Price</th>
+<th>Supplier ID (primary key)</th>
+<th>Supplier Name</th>
+<th>Supplier Address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>100</td>
+<td>59</td>
+<td>1</td>
+<td>A Supplier</td>
+<td>SA A</td>
+</tr>
+<tr>
+<td>102</td>
+<td>20</td>
+<td>1</td>
+<td>A Supplier</td>
+<td>SA A</td>
+</tr>
+<tr>
+<td>100</td>
+<td>69</td>
+<td>2</td>
+<td>B Supplier</td>
+<td>SA B</td>
+</tr>
+</tbody>
+</table>
+<ol start="2">
+<li>after 2NF.2</li>
+</ol>
+<p>Price Table</p>
+<table>
+<thead>
+<tr>
+<th>Item ID (primary key)</th>
+<th>Supplier ID (primary key)</th>
+<th>Price</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>100</td>
+<td>1</td>
+<td>59</td>
+</tr>
+<tr>
+<td>102</td>
+<td>1</td>
+<td>20</td>
+</tr>
+<tr>
+<td>100</td>
+<td>2</td>
+<td>69</td>
+</tr>
+</tbody>
+</table>
+<p>Supplier Table</p>
+<table>
+<thead>
+<tr>
+<th>Supplier ID (primary key)</th>
+<th>Supplier Name</th>
+<th>Supplier Address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>A Supplier</td>
+<td>SA A</td>
+</tr>
+<tr>
+<td>2</td>
+<td>B Supplier</td>
+<td>SA B</td>
+</tr>
+</tbody>
+</table>
+<h1 id="3NF"><a href="#3NF" class="headerlink" title="3NF"></a>3NF</h1><ol>
+<li>the entity is in second normal form (2NF) (符合2NF)</li>
+<li>no non-prime attribute is transitively dependent of any key ( 如果 AB 可以求得C  AB -&gt; C , C 就不應該出現)</li>
+</ol>
+<h2 id="EX1"><a href="#EX1" class="headerlink" title="EX1"></a>EX1</h2><p>Order Table</p>
+<table>
+<thead>
+<tr>
+<th>Order ID (primary key)</th>
+<th>Customer Name</th>
+<th>Unit Price</th>
+<th>Quantity</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>100</td>
+<td>David</td>
+<td>35</td>
+<td>3</td>
+<td>105</td>
+</tr>
+<tr>
+<td>101</td>
+<td>Jim</td>
+<td>25</td>
+<td>2</td>
+<td>50</td>
+</tr>
+<tr>
+<td>102</td>
+<td>Bob</td>
+<td>25</td>
+<td>3</td>
+<td>75</td>
+</tr>
+</tbody>
+</table>
+<p>Total可由 Unit Price + Quantity 求得 (Unit Price + Quantity ) -&gt; Total<br>所以刪除 Total</p>
+<table>
+<thead>
+<tr>
+<th>Order ID (primary key)</th>
+<th>Customer Name</th>
+<th>Unit Price</th>
+<th>Quantity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>100</td>
+<td>David</td>
+<td>35</td>
+<td>3</td>
+</tr>
+<tr>
+<td>101</td>
+<td>Jim</td>
+<td>25</td>
+<td>2</td>
+</tr>
+<tr>
+<td>102</td>
+<td>Bob</td>
+<td>25</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<h2 id="EX2"><a href="#EX2" class="headerlink" title="EX2"></a>EX2</h2><p>Price Table</p>
+<table>
+<thead>
+<tr>
+<th>Item ID (primary key)</th>
+<th>Price</th>
+<th>Supplier ID (primary key)</th>
+<th>Supplier Name</th>
+<th>Supplier Address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>100</td>
+<td>59</td>
+<td>1</td>
+<td>A Supplier</td>
+<td>SA A</td>
+</tr>
+<tr>
+<td>102</td>
+<td>20</td>
+<td>1</td>
+<td>A Supplier</td>
+<td>SA A</td>
+</tr>
+<tr>
+<td>100</td>
+<td>69</td>
+<td>2</td>
+<td>B Supplier</td>
+<td>SA B</td>
+</tr>
+</tbody>
+</table>
+<p>Supplier Address 可由 Supplier ID (primary key) 求得  Supplier ID (primary key) -&gt;  Supplier Address<br>所以刪除 Supplier Address  結果如上2NF 例子</p>
+<h1 id="BCNF-3-5-NF"><a href="#BCNF-3-5-NF" class="headerlink" title="BCNF / 3.5 NF"></a>BCNF / 3.5 NF</h1>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://lxlxx.github.io/2019/04/06/SQL-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -343,7 +796,7 @@
 <p>但儲存資料前需要不少的準備工作</p>
 <p>其中之一就是設計DB 的架構</p>
 <p>而 Normalization 是必不可少的環節</p>
-<h1 id="結尾"><a href="#結尾" class="headerlink" title="結尾"></a>結尾</h1><p>下篇SQL 將寫SQL Normalization 1NF 2NF 3NF 的筆記</p>
+<h1 id="結尾"><a href="#結尾" class="headerlink" title="結尾"></a>結尾</h1><p>下篇SQL 將寫SQL Normalization 1NF 2NF 3NF 3.5NF 的筆記</p>
 
           
         
@@ -1026,7 +1479,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
