@@ -262,6 +262,165 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lxlxx.github.io/2019/05/13/Git-Example/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="懷谷">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IT 學習筆記">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/13/Git-Example/" itemprop="url">Git Example</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-12T23:00:59-04:00">
+                2019-05-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="開篇"><a href="#開篇" class="headerlink" title="開篇"></a>開篇</h1><p>簡單的示範一下使用Git 的例子</p>
+<p>例子將模擬二個2位員工的分工和合併</p>
+<p>2位員工將會在各自的branch 加入新的file 和同時更改一個共用的file</p>
+<p>就如日常中二個人合作寫project的情況</p>
+<p>例子將用.swift 的文件示範</p>
+<p>不要使用 apple rich text 會出現merge 的問題</p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>首先開一個folder</p>
+<p>在里面加入一個config.swift</p>
+<p>然後在config.swift寫入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let SettingCommon = &quot;Common&quot;</span><br></pre></td></tr></table></figure></p>
+<p>再打開terminal cd 到folder 的位置 輸入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure></p>
+<p>成功會出現<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Initialized empty Git repository in /Users/yufai/Desktop/GitTesting2/.git/</span><br></pre></td></tr></table></figure></p>
+<p>然後繼續在terminal 輸入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &quot;git init&quot;</span><br></pre></td></tr></table></figure></p>
+<p>成功會出現<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[master (root-commit) 9ed71be] git init</span><br><span class="line">1 file changed, 8 insertions(+)</span><br><span class="line">create mode 100644 config.swift</span><br></pre></td></tr></table></figure></p>
+<p>然後開二個branch 模擬二人合作的情況 在terminal 輸入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch user1</span><br><span class="line">git branch user2</span><br></pre></td></tr></table></figure></p>
+<p>切換到user1 branch 模擬user 1 工作 在terminal 輸入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout user1</span><br></pre></td></tr></table></figure></p>
+<p>成功會出現<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Switched to branch &apos;user1&apos;</span><br></pre></td></tr></table></figure></p>
+<p>然後在config.swift加入一行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let SettingCommon = &quot;Common&quot;</span><br><span class="line">let SettingOne = &quot;one&quot; &lt;-- 加入的一行</span><br></pre></td></tr></table></figure></p>
+<p>加入一個func1.swift</p>
+<p>在func1.swift寫入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let func1 ＝ &quot;func1&quot;</span><br></pre></td></tr></table></figure></p>
+<p>然後在terminal 輸入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &quot;user1 init&quot;</span><br></pre></td></tr></table></figure></p>
+<p>再切換到user2 branch 模擬user 2 工作 在terminal 輸入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout user2</span><br></pre></td></tr></table></figure></p>
+<p>成功會出現<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Switched to branch &apos;user2&apos;</span><br></pre></td></tr></table></figure></p>
+<p>然後在config.swift加入一行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let SettingCommon = &quot;Common&quot;</span><br><span class="line">let SettingTwo = &quot;two&quot; &lt;-- 加入的一行</span><br></pre></td></tr></table></figure></p>
+<p>加入一個func2.swift</p>
+<p>在func2.swift寫入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let func2 ＝ &quot;func2&quot;</span><br></pre></td></tr></table></figure></p>
+<p>然後在terminal 輸入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &quot;user2 init&quot;</span><br></pre></td></tr></table></figure></p>
+<p>回到master branch 準備merge<br>在terminal 輸入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout master</span><br></pre></td></tr></table></figure></p>
+<p>成功會出現<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Switched to branch &apos;master&apos;</span><br></pre></td></tr></table></figure></p>
+<p>在terminal 輸入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge user1</span><br></pre></td></tr></table></figure></p>
+<p>成功會出現<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Updating 9ed71be..8df35f6</span><br><span class="line">Fast-forward</span><br><span class="line">config.swift | 1 +</span><br><span class="line">func1.swift  | 8 ++++++++</span><br><span class="line">2 files changed, 9 insertions(+)</span><br><span class="line">create mode 100644 func1.swift</span><br></pre></td></tr></table></figure></p>
+<p>再merge user2在terminal 輸入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge user2</span><br></pre></td></tr></table></figure></p>
+<p>成功會出現<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Auto-merging config.swift</span><br><span class="line">CONFLICT (content): Merge conflict in config.swift</span><br><span class="line">Automatic merge failed; fix conflicts and then commit the result.</span><br></pre></td></tr></table></figure></p>
+<p>打開config.swift 會看見<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let SettingCommon = &quot;Common&quot;</span><br><span class="line">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</span><br><span class="line">let SettingOne = &quot;one&quot;</span><br><span class="line">=======</span><br><span class="line">let SettingTwo = &quot;two&quot;</span><br><span class="line">&gt;&gt;&gt;&gt;&gt;&gt;&gt; user2</span><br></pre></td></tr></table></figure></p>
+<p>把以下的三行刪掉<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</span><br><span class="line">=======</span><br><span class="line">&gt;&gt;&gt;&gt;&gt;&gt;&gt; user2</span><br></pre></td></tr></table></figure></p>
+<p>文件將變成<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let SettingCommon = &quot;Common&quot;</span><br><span class="line">let SettingOne = &quot;one&quot;</span><br><span class="line">let SettingTwo = &quot;two&quot;</span><br></pre></td></tr></table></figure></p>
+<p>回到terminal 輸入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &quot;merge two func&quot;</span><br></pre></td></tr></table></figure></p>
+<p>成功會出現<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[master 119ec7e] merge two func</span><br></pre></td></tr></table></figure></p>
+<h1 id="結尾"><a href="#結尾" class="headerlink" title="結尾"></a>結尾</h1><p>下篇 Git 將在 Xcode 的 project 中示範使用 Git</p>
+<p><span style="color:white"><br><em>唠騷</em><br><em>棄我去者 昨日之日不可留 亂我心者 今日之日多煩憂<br>四方八面各式各樣的煩悶揮之不去<br>身體健康出現問題<br>西醫看不好<br>中藥飲不少<br>略有好轉<br>只能說革命尚未成功 同志仍需努力
+</em><br></span></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://lxlxx.github.io/2019/04/07/SQL-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1254,7 +1413,7 @@
 <tr>
 <td>13</td>
 <td>git reflog</td>
-<td>檢視提交的所有歷史記錄</td>
+<td>檢視提交改變的所有歷史記錄</td>
 </tr>
 <tr>
 <td>13</td>
@@ -1620,7 +1779,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
