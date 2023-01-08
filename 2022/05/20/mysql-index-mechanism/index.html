@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="iOS," />
+  <meta name="keywords" content="SQL," />
 
 
 
@@ -79,18 +79,20 @@
 
 
 
-<meta name="description" content="開篇第二篇Blog 將會寫我最愛的iOS 從最基本的建立GUI 開始 正文XYWH在沒有Autolayout 的年代 每個iOS都是用 X-position Y-position Width Height 建立起來的 現在除了少數情況外 大部分的情況都不會再用了 Storyboard + Autolayout大概是最多人使用的方法 因為最易入門 XIB + Autolayout在SB 出現前比較多">
-<meta name="keywords" content="iOS">
+<meta name="description" content="Introduction When data is stored on disk-based storage devices, it is stored as blocks of data. These blocks are accessed in their entirety, making them the atomic disk access operation. Disk blocks a">
+<meta name="keywords" content="SQL">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS UI build in SB XIB PureCode Texture(ASDK) WEEX">
-<meta property="og:url" content="https://lxlxx.github.io/2019/02/24/iOS-UI-build-in-SB-XIB-PureCode-Texture-ASDK-WEEX/index.html">
+<meta property="og:title" content="MySQL index mechanism">
+<meta property="og:url" content="https://lxlxx.github.io/2022/05/20/mysql-index-mechanism/index.html">
 <meta property="og:site_name" content="IT 學習筆記">
-<meta property="og:description" content="開篇第二篇Blog 將會寫我最愛的iOS 從最基本的建立GUI 開始 正文XYWH在沒有Autolayout 的年代 每個iOS都是用 X-position Y-position Width Height 建立起來的 現在除了少數情況外 大部分的情況都不會再用了 Storyboard + Autolayout大概是最多人使用的方法 因為最易入門 XIB + Autolayout在SB 出現前比較多">
+<meta property="og:description" content="Introduction When data is stored on disk-based storage devices, it is stored as blocks of data. These blocks are accessed in their entirety, making them the atomic disk access operation. Disk blocks a">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-19T14:21:13.447Z">
+<meta property="og:image" content="https://www.mdpi.com/electronics/electronics-09-01348/article_deploy/html/images/electronics-09-01348-g005-550.jpg">
+<meta property="og:updated_time" content="2022-05-21T09:28:19.159Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS UI build in SB XIB PureCode Texture(ASDK) WEEX">
-<meta name="twitter:description" content="開篇第二篇Blog 將會寫我最愛的iOS 從最基本的建立GUI 開始 正文XYWH在沒有Autolayout 的年代 每個iOS都是用 X-position Y-position Width Height 建立起來的 現在除了少數情況外 大部分的情況都不會再用了 Storyboard + Autolayout大概是最多人使用的方法 因為最易入門 XIB + Autolayout在SB 出現前比較多">
+<meta name="twitter:title" content="MySQL index mechanism">
+<meta name="twitter:description" content="Introduction When data is stored on disk-based storage devices, it is stored as blocks of data. These blocks are accessed in their entirety, making them the atomic disk access operation. Disk blocks a">
+<meta name="twitter:image" content="https://www.mdpi.com/electronics/electronics-09-01348/article_deploy/html/images/electronics-09-01348-g005-550.jpg">
 
 
 
@@ -120,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://lxlxx.github.io/2019/02/24/iOS-UI-build-in-SB-XIB-PureCode-Texture-ASDK-WEEX/"/>
+  <link rel="canonical" href="https://lxlxx.github.io/2022/05/20/mysql-index-mechanism/"/>
 
 
 
 
 
-  <title>iOS UI build in SB XIB PureCode Texture(ASDK) WEEX | IT 學習筆記</title>
+  <title>MySQL index mechanism | IT 學習筆記</title>
   
 
 
@@ -263,7 +265,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lxlxx.github.io/2019/02/24/iOS-UI-build-in-SB-XIB-PureCode-Texture-ASDK-WEEX/">
+    <link itemprop="mainEntityOfPage" href="https://lxlxx.github.io/2022/05/20/mysql-index-mechanism/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="懷谷">
@@ -280,7 +282,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">iOS UI build in SB XIB PureCode Texture(ASDK) WEEX</h1>
+          <h1 class="post-title" itemprop="name headline">MySQL index mechanism</h1>
         
 
         <div class="post-meta">
@@ -292,8 +294,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-24T11:19:37+08:00">
-                2019-02-23
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-05-20T22:50:54-07:00">
+                2022-05-21
               </time>
             
 
@@ -330,21 +332,79 @@
       
 
       
-        <h1 id="開篇"><a href="#開篇" class="headerlink" title="開篇"></a>開篇</h1><p>第二篇Blog 將會寫我最愛的iOS</p>
-<p>從最基本的建立GUI 開始</p>
-<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="XYWH"><a href="#XYWH" class="headerlink" title="XYWH"></a>XYWH</h2><p>在沒有Autolayout 的年代</p>
-<p>每個iOS都是用 X-position Y-position Width Height 建立起來的</p>
-<p>現在除了少數情況外 大部分的情況都不會再用了</p>
-<h2 id="Storyboard-Autolayout"><a href="#Storyboard-Autolayout" class="headerlink" title="Storyboard + Autolayout"></a>Storyboard + Autolayout</h2><p>大概是最多人使用的方法</p>
-<p>因為最易入門</p>
-<h2 id="XIB-Autolayout"><a href="#XIB-Autolayout" class="headerlink" title="XIB + Autolayout"></a>XIB + Autolayout</h2><p>在SB 出現前比較多人使用的方法</p>
-<p>現在也有不少人使用 因為在View 重用上比SB 簡單</p>
-<p>而且又比純碼多了一些可觀性</p>
-<h2 id="Pure-Code-Autolayout"><a href="#Pure-Code-Autolayout" class="headerlink" title="Pure Code + Autolayout"></a>Pure Code + Autolayout</h2><p>比較在乎View 重用和在Git 解決衝突比較簡單的方法</p>
-<h2 id="Other"><a href="#Other" class="headerlink" title="Other"></a>Other</h2><p>像是Texture (ASDK) WEEX 之類的Framework</p>
-<p>詳細使用方法可請教Google 大神</p>
-<p>基本上是少了一些功能 增加了速度的方案</p>
-<h1 id="結尾"><a href="#結尾" class="headerlink" title="結尾"></a>結尾</h1><p>下篇iOS 將用Code示範如何使用2.2-2.4三種方法</p>
+        <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p><img src="https://www.mdpi.com/electronics/electronics-09-01348/article_deploy/html/images/electronics-09-01348-g005-550.jpg" alt="alt text" title="A table linked by a traditional secondary index."></p>
+<p>When data is stored on disk-based storage devices, it is stored as blocks of data. These blocks are accessed in their entirety, making them the atomic disk access operation. Disk blocks are structured in much the same way as linked lists; both contain a section for data, a pointer to the location of the next node (or block), and both need not be stored contiguously.</p>
+<p>Due to the fact that a number of records can only be sorted on one field, we can state that searching on a field that isn’t sorted requires a Linear Search which requires (N+1)/2 block accesses (on average), where N is the number of blocks that the table spans. If that field is a non-key field (i.e. doesn’t contain unique entries) then the entire tablespace must be searched at N block accesses.</p>
+<p>Whereas with a sorted field, a Binary Search may be used, which has log2 N block accesses. Also since the data is sorted given a non-key field, the rest of the table doesn’t need to be searched for duplicate values, once a higher value is found. Thus the performance increase is substantial.</p>
+<h1 id="What-is-indexing"><a href="#What-is-indexing" class="headerlink" title="What is indexing?"></a>What is indexing?</h1><p>Indexing is a way of sorting a number of records on multiple fields. Creating an index on a field in a table creates another data structure which holds the field value, and a pointer to the record it relates to. This index structure is then sorted, allowing Binary Searches to be performed on it.</p>
+<p>The downside to indexing is that these indices require additional space on the disk since the indices are stored together in a table using the MyISAM engine, this file can quickly reach the size limits of the underlying file system if many fields within the same table are indexed.</p>
+<h1 id="How-does-it-work"><a href="#How-does-it-work" class="headerlink" title="How does it work?"></a>How does it work?</h1><p>Firstly, let’s outline a sample database table schema;</p>
+<table>
+<thead>
+<tr>
+<th>Field name</th>
+<th>Data type</th>
+<th>Size on disk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id (Primary key)</td>
+<td>Unsigned INT</td>
+<td>4 bytes</td>
+</tr>
+<tr>
+<td>firstName</td>
+<td>Char(50)</td>
+<td>50 bytes</td>
+</tr>
+<tr>
+<td>lastName</td>
+<td>Char(50)</td>
+<td>50 bytes</td>
+</tr>
+<tr>
+<td>emailAddress</td>
+<td>Char(100)</td>
+<td>100 bytes</td>
+</tr>
+</tbody>
+</table>
+<p>Note: char was used in place of varchar to allow for an accurate size on disk value. This sample database contains five million rows and is unindexed. The performance of several queries will now be analyzed. These are a query using the id (a sorted key field) and one using the firstName (a non-key unsorted field).</p>
+<h1 id="Example-1-sorted-vs-unsorted-fields"><a href="#Example-1-sorted-vs-unsorted-fields" class="headerlink" title="Example 1 - sorted vs unsorted fields"></a>Example 1 - sorted vs unsorted fields</h1><p>Given our sample database of r = 5,000,000 records of a fixed size giving a record length of R = 204 bytes and they are stored in a table using the MyISAM engine which is using the default block size B = 1,024 bytes. The blocking factor of the table would be bfr = (B/R) = 1024/204 = 5 records per disk block. The total number of blocks required to hold the table is N = (r/bfr) = 5000000/5 = 1,000,000 blocks.</p>
+<p>A linear search on the id field would require an average of N/2 = 500,000 block accesses to find a value, given that the id field is a key field. But since the id field is also sorted, a binary search can be conducted requiring an average of log2 1000000 = 19.93 = 20 block accesses. Instantly we can see this is a drastic improvement.</p>
+<p>Now the firstName field is neither sorted nor a key field, so a binary search is impossible, nor are the values unique, and thus the table will require searching to the end for an exact N = 1,000,000 block accesses. It is this situation that indexing aims to correct.</p>
+<p>Given that an index record contains only the indexed field and a pointer to the original record, it stands to reason that it will be smaller than the multi-field record that it points to. So the index itself requires fewer disk blocks than the original table, which therefore requires fewer block accesses to iterate through. The schema for an index on the firstName field is outlined below;</p>
+<table>
+<thead>
+<tr>
+<th>Field name</th>
+<th>Data type</th>
+<th>Size on disk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>firstName</td>
+<td>Char(50)</td>
+<td>50 bytes</td>
+</tr>
+<tr>
+<td>(record pointer)</td>
+<td>Special</td>
+<td>4 bytes</td>
+</tr>
+</tbody>
+</table>
+<p>Note: Pointers in MySQL are 2, 3, 4 or 5 bytes in length depending on the size of the table.</p>
+<h1 id="Example-2-indexing"><a href="#Example-2-indexing" class="headerlink" title="Example 2 - indexing"></a>Example 2 - indexing</h1><p>Given our sample database of r = 5,000,000 records with an index record length of R = 54 bytes and using the default block size B = 1,024 bytes. The blocking factor of the index would be bfr = (B/R) = 1024/54 = 18 records per disk block. The total number of blocks required to hold the index is N = (r/bfr) = 5000000/18 = 277,778 blocks.</p>
+<p>Now a search using the firstName field can utilize the index to increase performance. This allows for a binary search of the index with an average of log2 277778 = 18.08 = 19 block accesses. To find the address of the actual record, which requires a further block access to read, bringing the total to 19 + 1 = 20 block accesses, a far cry from the 1,000,000 block accesses required to find a firstName match in the non-indexed table.</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><blockquote>
+<p><a href="https://stackoverflow.com/questions/1108/how-does-database-indexing-work" target="_blank" rel="noopener">https://stackoverflow.com/questions/1108/how-does-database-indexing-work</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://dataschool.com/sql-optimization/how-indexing-works/" target="_blank" rel="noopener">https://dataschool.com/sql-optimization/how-indexing-works/</a><br><a href="https://www.mdpi.com/2079-9292/9/9/1348/htm" target="_blank" rel="noopener">https://www.mdpi.com/2079-9292/9/9/1348/htm</a></p>
+</blockquote>
 
       
     </div>
@@ -362,7 +422,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/iOS/" rel="tag"># iOS</a>
+            <a href="/tags/SQL/" rel="tag"># SQL</a>
           
         </div>
       
@@ -375,8 +435,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/22/Xcode-and-Git/" rel="next" title="Git 歷史與簡介">
-                <i class="fa fa-chevron-left"></i> Git 歷史與簡介
+              <a href="/2022/05/19/B-tree-B-tree-M-way-search/" rel="next" title="B+-tree B-tree M-way search">
+                <i class="fa fa-chevron-left"></i> B+-tree B-tree M-way search
               </a>
             
           </div>
@@ -384,10 +444,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/20/Xcode-and-Git-2/" rel="prev" title="Git 常用功能簡介">
-                Git 常用功能簡介 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -464,7 +520,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -477,7 +533,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -510,7 +566,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#開篇"><span class="nav-number">1.</span> <span class="nav-text">開篇</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#XYWH"><span class="nav-number">2.1.</span> <span class="nav-text">XYWH</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Storyboard-Autolayout"><span class="nav-number">2.2.</span> <span class="nav-text">Storyboard + Autolayout</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XIB-Autolayout"><span class="nav-number">2.3.</span> <span class="nav-text">XIB + Autolayout</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pure-Code-Autolayout"><span class="nav-number">2.4.</span> <span class="nav-text">Pure Code + Autolayout</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Other"><span class="nav-number">2.5.</span> <span class="nav-text">Other</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#結尾"><span class="nav-number">3.</span> <span class="nav-text">結尾</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#What-is-indexing"><span class="nav-number">2.</span> <span class="nav-text">What is indexing?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#How-does-it-work"><span class="nav-number">3.</span> <span class="nav-text">How does it work?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Example-1-sorted-vs-unsorted-fields"><span class="nav-number">4.</span> <span class="nav-text">Example 1 - sorted vs unsorted fields</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Example-2-indexing"><span class="nav-number">5.</span> <span class="nav-text">Example 2 - indexing</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">6.</span> <span class="nav-text">Reference</span></a></li></ol></div>
             
 
           </div>
@@ -530,7 +586,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

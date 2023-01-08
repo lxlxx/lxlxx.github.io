@@ -262,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lxlxx.github.io/2019/05/13/Git-Example/">
+    <link itemprop="mainEntityOfPage" href="https://lxlxx.github.io/2022/05/20/mysql-index-mechanism/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="懷谷">
@@ -281,7 +281,377 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/05/13/Git-Example/" itemprop="url">Git Example</a></h1>
+                <a class="post-title-link" href="/2022/05/20/mysql-index-mechanism/" itemprop="url">MySQL index mechanism</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-05-21T01:50:54-04:00">
+                2022-05-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p><img src="https://www.mdpi.com/electronics/electronics-09-01348/article_deploy/html/images/electronics-09-01348-g005-550.jpg" alt="alt text" title="A table linked by a traditional secondary index."></p>
+<p>When data is stored on disk-based storage devices, it is stored as blocks of data. These blocks are accessed in their entirety, making them the atomic disk access operation. Disk blocks are structured in much the same way as linked lists; both contain a section for data, a pointer to the location of the next node (or block), and both need not be stored contiguously.</p>
+<p>Due to the fact that a number of records can only be sorted on one field, we can state that searching on a field that isn’t sorted requires a Linear Search which requires (N+1)/2 block accesses (on average), where N is the number of blocks that the table spans. If that field is a non-key field (i.e. doesn’t contain unique entries) then the entire tablespace must be searched at N block accesses.</p>
+<p>Whereas with a sorted field, a Binary Search may be used, which has log2 N block accesses. Also since the data is sorted given a non-key field, the rest of the table doesn’t need to be searched for duplicate values, once a higher value is found. Thus the performance increase is substantial.</p>
+<h1 id="What-is-indexing"><a href="#What-is-indexing" class="headerlink" title="What is indexing?"></a>What is indexing?</h1><p>Indexing is a way of sorting a number of records on multiple fields. Creating an index on a field in a table creates another data structure which holds the field value, and a pointer to the record it relates to. This index structure is then sorted, allowing Binary Searches to be performed on it.</p>
+<p>The downside to indexing is that these indices require additional space on the disk since the indices are stored together in a table using the MyISAM engine, this file can quickly reach the size limits of the underlying file system if many fields within the same table are indexed.</p>
+<h1 id="How-does-it-work"><a href="#How-does-it-work" class="headerlink" title="How does it work?"></a>How does it work?</h1><p>Firstly, let’s outline a sample database table schema;</p>
+<table>
+<thead>
+<tr>
+<th>Field name</th>
+<th>Data type</th>
+<th>Size on disk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id (Primary key)</td>
+<td>Unsigned INT</td>
+<td>4 bytes</td>
+</tr>
+<tr>
+<td>firstName</td>
+<td>Char(50)</td>
+<td>50 bytes</td>
+</tr>
+<tr>
+<td>lastName</td>
+<td>Char(50)</td>
+<td>50 bytes</td>
+</tr>
+<tr>
+<td>emailAddress</td>
+<td>Char(100)</td>
+<td>100 bytes</td>
+</tr>
+</tbody>
+</table>
+<p>Note: char was used in place of varchar to allow for an accurate size on disk value. This sample database contains five million rows and is unindexed. The performance of several queries will now be analyzed. These are a query using the id (a sorted key field) and one using the firstName (a non-key unsorted field).</p>
+<h1 id="Example-1-sorted-vs-unsorted-fields"><a href="#Example-1-sorted-vs-unsorted-fields" class="headerlink" title="Example 1 - sorted vs unsorted fields"></a>Example 1 - sorted vs unsorted fields</h1><p>Given our sample database of r = 5,000,000 records of a fixed size giving a record length of R = 204 bytes and they are stored in a table using the MyISAM engine which is using the default block size B = 1,024 bytes. The blocking factor of the table would be bfr = (B/R) = 1024/204 = 5 records per disk block. The total number of blocks required to hold the table is N = (r/bfr) = 5000000/5 = 1,000,000 blocks.</p>
+<p>A linear search on the id field would require an average of N/2 = 500,000 block accesses to find a value, given that the id field is a key field. But since the id field is also sorted, a binary search can be conducted requiring an average of log2 1000000 = 19.93 = 20 block accesses. Instantly we can see this is a drastic improvement.</p>
+<p>Now the firstName field is neither sorted nor a key field, so a binary search is impossible, nor are the values unique, and thus the table will require searching to the end for an exact N = 1,000,000 block accesses. It is this situation that indexing aims to correct.</p>
+<p>Given that an index record contains only the indexed field and a pointer to the original record, it stands to reason that it will be smaller than the multi-field record that it points to. So the index itself requires fewer disk blocks than the original table, which therefore requires fewer block accesses to iterate through. The schema for an index on the firstName field is outlined below;</p>
+<table>
+<thead>
+<tr>
+<th>Field name</th>
+<th>Data type</th>
+<th>Size on disk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>firstName</td>
+<td>Char(50)</td>
+<td>50 bytes</td>
+</tr>
+<tr>
+<td>(record pointer)</td>
+<td>Special</td>
+<td>4 bytes</td>
+</tr>
+</tbody>
+</table>
+<p>Note: Pointers in MySQL are 2, 3, 4 or 5 bytes in length depending on the size of the table.</p>
+<h1 id="Example-2-indexing"><a href="#Example-2-indexing" class="headerlink" title="Example 2 - indexing"></a>Example 2 - indexing</h1><p>Given our sample database of r = 5,000,000 records with an index record length of R = 54 bytes and using the default block size B = 1,024 bytes. The blocking factor of the index would be bfr = (B/R) = 1024/54 = 18 records per disk block. The total number of blocks required to hold the index is N = (r/bfr) = 5000000/18 = 277,778 blocks.</p>
+<p>Now a search using the firstName field can utilize the index to increase performance. This allows for a binary search of the index with an average of log2 277778 = 18.08 = 19 block accesses. To find the address of the actual record, which requires a further block access to read, bringing the total to 19 + 1 = 20 block accesses, a far cry from the 1,000,000 block accesses required to find a firstName match in the non-indexed table.</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><blockquote>
+<p><a href="https://stackoverflow.com/questions/1108/how-does-database-indexing-work" target="_blank" rel="noopener">https://stackoverflow.com/questions/1108/how-does-database-indexing-work</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://dataschool.com/sql-optimization/how-indexing-works/" target="_blank" rel="noopener">https://dataschool.com/sql-optimization/how-indexing-works/</a><br><a href="https://www.mdpi.com/2079-9292/9/9/1348/htm" target="_blank" rel="noopener">https://www.mdpi.com/2079-9292/9/9/1348/htm</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lxlxx.github.io/2022/05/19/B-tree-B-tree-M-way-search/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="懷谷">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IT 學習筆記">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/05/19/B-tree-B-tree-M-way-search/" itemprop="url">B+-tree B-tree M-way search</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-05-19T22:43:00-04:00">
+                2022-05-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>MySQL index structure is B+-tree. B+-tree is an extension of B-tree, and B-tree is type of M-way searching.</p>
+<h1 id="Body"><a href="#Body" class="headerlink" title="Body"></a>Body</h1><h2 id="M-way-search"><a href="#M-way-search" class="headerlink" title="M-way search"></a>M-way search</h2><p>An m-way tree is a rooted tree in which each node has no more than m children. A binary tree is the special case where m = 2, and a ternary tree is another case with m = 3 that limits its children to three.</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b8/Karytree.png/440px-Karytree.png" alt="alt text" title="An example of a m-ary tree with m=5 wikipedia"></p>
+<h2 id="B-tree"><a href="#B-tree" class="headerlink" title="B-tree"></a>B-tree</h2><p>B-tree is an M-way search tree with two special properties:</p>
+<ol>
+<li>It is perfectly balanced: every leaf node is at the same depth.<br>(With a balanced tree, access1 is O(log n).<br>With an unbalanced tree, access1 is O(n) (worst case).)</li>
+</ol>
+<p><img src="https://i.stack.imgur.com/tjkrr.png" alt="alt text" title="Balanced vs Unbalanced Binary Tree by Andreas stackoverflow"></p>
+<ol start="2">
+<li>Every node, except perhaps the root, is at least half-full, i.e. contains M/2 or more values (of course, it cannot contain more than M-1 values). The root may have any number of values (1 to M-1).</li>
+</ol>
+<h2 id="B-tree-1"><a href="#B-tree-1" class="headerlink" title="B+-tree"></a>B+-tree</h2><p>Difference Between B-Tree And B+ Tree</p>
+<table>
+<thead>
+<tr>
+<th>B-tree</th>
+<th>B+-tree</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data is stored in leaf nodes as well as internal nodes.</td>
+<td>Data is stored only in leaf nodes.</td>
+</tr>
+<tr>
+<td>Leaf nodes cannot be linked together.</td>
+<td>Leaf nodes are linked together to form a linked list.</td>
+</tr>
+<tr>
+<td>Searching is a bit slower as data is stored in internal as well as leaf nodes.</td>
+<td>Searching is faster as the data is stored only in the leaf nodes.</td>
+</tr>
+<tr>
+<td>Deletion operation is complex.</td>
+<td>Deletion operation is easy as data can be directly deleted from the leaf nodes.</td>
+</tr>
+<tr>
+<td>No redundant search keys are present.</td>
+<td>Redundant search keys may be present.</td>
+</tr>
+</tbody>
+</table>
+<p><img src="https://i.stack.imgur.com/l6UyF.png" alt="alt text" title="B tree B+ tree by Rose Perrone stackoverflow"></p>
+<h3 id="Searching-is-faster-as-the-data-is-stored-only-in-the-leaf-nodes"><a href="#Searching-is-faster-as-the-data-is-stored-only-in-the-leaf-nodes" class="headerlink" title="Searching is faster as the data is stored only in the leaf nodes."></a>Searching is faster as the data is stored only in the leaf nodes.</h3><p>B+ trees don’t have data associated with interior nodes, more keys can fit on a page of memory. Therefore, it will require fewer cache misses in order to access data that is on a leaf node.</p>
+<p>The leaf nodes of B+ trees are linked, so doing a full scan of all objects in a tree requires just one linear pass through all the leaf nodes. A B tree, on the other hand, would require a traversal of every level in the tree. This full-tree traversal will likely involve more cache misses than the linear traversal of B+ leaves.</p>
+<h3 id="B-tree-Deletion-operation-is-complex"><a href="#B-tree-Deletion-operation-is-complex" class="headerlink" title="B-tree Deletion operation is complex."></a>B-tree Deletion operation is complex.</h3><p>Data is stored in leaf nodes as well as internal nodes, so there are two different situations we need to deal with, and B+-tree only stores data in leaf nodes.</p>
+<h3 id="No-redundant-search-keys-are-present"><a href="#No-redundant-search-keys-are-present" class="headerlink" title="No redundant search keys are present."></a>No redundant search keys are present.</h3><p>B-tree only includes &lt; &gt; equal is not an option.</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><blockquote>
+<p><a href="https://www.youtube.com/watch?v=aZjYr87r1b8&amp;ab_channel=AbdulBari" target="_blank" rel="noopener">https://www.youtube.com/watch?v=aZjYr87r1b8&amp;ab_channel=AbdulBari</a><br><a href="https://www.youtube.com/watch?v=C_q5ccN84C8&amp;ab_channel=FullstackAcademy" target="_blank" rel="noopener">https://www.youtube.com/watch?v=C_q5ccN84C8&amp;ab_channel=FullstackAcademy</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.softwaretestinghelp.com/b-tree-data-structure-cpp/" target="_blank" rel="noopener">https://www.softwaretestinghelp.com/b-tree-data-structure-cpp/</a><br><a href="https://webdocs.cs.ualberta.ca/~holte/T26/b-trees.html" target="_blank" rel="noopener">https://webdocs.cs.ualberta.ca/~holte/T26/b-trees.html</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://stackoverflow.com/questions/59206128/balanced-vs-unbalanced-binary-tree-clarification-needed" target="_blank" rel="noopener">https://stackoverflow.com/questions/59206128/balanced-vs-unbalanced-binary-tree-clarification-needed</a><br><a href="https://stackoverflow.com/questions/870218/what-are-the-differences-between-b-trees-and-b-trees" target="_blank" rel="noopener">https://stackoverflow.com/questions/870218/what-are-the-differences-between-b-trees-and-b-trees</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://en.wikipedia.org/wiki/M-ary_tree" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/M-ary_tree</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lxlxx.github.io/2019/05/12/Git-Example/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="懷谷">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IT 學習筆記">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/12/Git-Example/" itemprop="url">Git Example</a></h1>
         
 
         <div class="post-meta">
@@ -422,7 +792,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lxlxx.github.io/2019/04/07/SQL-2/">
+    <link itemprop="mainEntityOfPage" href="https://lxlxx.github.io/2019/04/06/SQL-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="懷谷">
@@ -441,7 +811,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/04/07/SQL-2/" itemprop="url">SQL_2</a></h1>
+                <a class="post-title-link" href="/2019/04/06/SQL-2/" itemprop="url">SQL_2</a></h1>
         
 
         <div class="post-meta">
@@ -1001,7 +1371,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lxlxx.github.io/2019/04/06/SQL-1/">
+    <link itemprop="mainEntityOfPage" href="https://lxlxx.github.io/2019/04/05/SQL-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="懷谷">
@@ -1020,7 +1390,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/04/06/SQL-1/" itemprop="url">SQL_1</a></h1>
+                <a class="post-title-link" href="/2019/04/05/SQL-1/" itemprop="url">SQL_1</a></h1>
         
 
         <div class="post-meta">
@@ -1131,7 +1501,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lxlxx.github.io/2019/03/27/iOS-Building-GUI/">
+    <link itemprop="mainEntityOfPage" href="https://lxlxx.github.io/2019/03/26/iOS-Building-GUI/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="懷谷">
@@ -1150,7 +1520,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/03/27/iOS-Building-GUI/" itemprop="url">iOS Building GUI</a></h1>
+                <a class="post-title-link" href="/2019/03/26/iOS-Building-GUI/" itemprop="url">iOS Building GUI</a></h1>
         
 
         <div class="post-meta">
@@ -1271,7 +1641,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lxlxx.github.io/2019/03/20/Xcode-and-Git-2/">
+    <link itemprop="mainEntityOfPage" href="https://lxlxx.github.io/2019/03/19/Xcode-and-Git-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="懷谷">
@@ -1290,7 +1660,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/03/20/Xcode-and-Git-2/" itemprop="url">Git 常用功能簡介</a></h1>
+                <a class="post-title-link" href="/2019/03/19/Xcode-and-Git-2/" itemprop="url">Git 常用功能簡介</a></h1>
         
 
         <div class="post-meta">
@@ -1478,7 +1848,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lxlxx.github.io/2019/02/24/iOS-UI-build-in-SB-XIB-PureCode-Texture-ASDK-WEEX/">
+    <link itemprop="mainEntityOfPage" href="https://lxlxx.github.io/2019/02/23/iOS-UI-build-in-SB-XIB-PureCode-Texture-ASDK-WEEX/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="懷谷">
@@ -1497,7 +1867,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/24/iOS-UI-build-in-SB-XIB-PureCode-Texture-ASDK-WEEX/" itemprop="url">iOS UI build in SB XIB PureCode Texture(ASDK) WEEX</a></h1>
+                <a class="post-title-link" href="/2019/02/23/iOS-UI-build-in-SB-XIB-PureCode-Texture-ASDK-WEEX/" itemprop="url">iOS UI build in SB XIB PureCode Texture(ASDK) WEEX</a></h1>
         
 
         <div class="post-meta">
@@ -1612,7 +1982,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lxlxx.github.io/2019/02/22/Xcode-and-Git/">
+    <link itemprop="mainEntityOfPage" href="https://lxlxx.github.io/2019/02/21/Xcode-and-Git/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="懷谷">
@@ -1631,7 +2001,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/22/Xcode-and-Git/" itemprop="url">Git 歷史與簡介</a></h1>
+                <a class="post-title-link" href="/2019/02/21/Xcode-and-Git/" itemprop="url">Git 歷史與簡介</a></h1>
         
 
         <div class="post-meta">
@@ -1780,7 +2150,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1793,7 +2163,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -1830,7 +2200,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

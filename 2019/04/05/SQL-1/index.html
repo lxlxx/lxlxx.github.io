@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Git," />
+  <meta name="keywords" content="SQL," />
 
 
 
@@ -79,20 +79,18 @@
 
 
 
-<meta name="description" content="正文基本功能   no. function name output     1 git init Init 當下目錄成Git 項目   2 git clone 第一次 下載一個Git 項目至本地   3 git pull 取回遠程倉庫修改至本地倉庫并合并至工作區   4 git add 添加當下目錄文件之修改至暫存區   5 git commit 提交暫存區修改至本地倉庫   6 git push">
-<meta name="keywords" content="Git">
+<meta name="description" content="開篇在之前的Git 文章曾說過 Git 是現在程式員必學的技能之一 今天要說的就是另一個幾乎必學的語言 SQL 一般程式員都最少會一種主要的程式語言 ＋ Git ＋ SQL 就像是坦補DD 一樣的鐵三角 SQL 是一種控制relational database 的語言 而relational database 是常用的儲存資料方法 而SQL 有不少分支像 MySQL Oracle SQL MsSQ">
+<meta name="keywords" content="SQL">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Git 常用功能簡介">
-<meta property="og:url" content="https://lxlxx.github.io/2019/03/20/Xcode-and-Git-2/index.html">
+<meta property="og:title" content="SQL_1">
+<meta property="og:url" content="https://lxlxx.github.io/2019/04/05/SQL-1/index.html">
 <meta property="og:site_name" content="IT 學習筆記">
-<meta property="og:description" content="正文基本功能   no. function name output     1 git init Init 當下目錄成Git 項目   2 git clone 第一次 下載一個Git 項目至本地   3 git pull 取回遠程倉庫修改至本地倉庫并合并至工作區   4 git add 添加當下目錄文件之修改至暫存區   5 git commit 提交暫存區修改至本地倉庫   6 git push">
+<meta property="og:description" content="開篇在之前的Git 文章曾說過 Git 是現在程式員必學的技能之一 今天要說的就是另一個幾乎必學的語言 SQL 一般程式員都最少會一種主要的程式語言 ＋ Git ＋ SQL 就像是坦補DD 一樣的鐵三角 SQL 是一種控制relational database 的語言 而relational database 是常用的儲存資料方法 而SQL 有不少分支像 MySQL Oracle SQL MsSQ">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://image.slidesharecdn.com/2-150113000441-conversion-gate01/95/-12-638.jpg?cb=1421236602">
-<meta property="og:updated_time" content="2019-04-22T14:26:26.021Z">
+<meta property="og:updated_time" content="2019-04-06T17:08:58.733Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Git 常用功能簡介">
-<meta name="twitter:description" content="正文基本功能   no. function name output     1 git init Init 當下目錄成Git 項目   2 git clone 第一次 下載一個Git 項目至本地   3 git pull 取回遠程倉庫修改至本地倉庫并合并至工作區   4 git add 添加當下目錄文件之修改至暫存區   5 git commit 提交暫存區修改至本地倉庫   6 git push">
-<meta name="twitter:image" content="https://image.slidesharecdn.com/2-150113000441-conversion-gate01/95/-12-638.jpg?cb=1421236602">
+<meta name="twitter:title" content="SQL_1">
+<meta name="twitter:description" content="開篇在之前的Git 文章曾說過 Git 是現在程式員必學的技能之一 今天要說的就是另一個幾乎必學的語言 SQL 一般程式員都最少會一種主要的程式語言 ＋ Git ＋ SQL 就像是坦補DD 一樣的鐵三角 SQL 是一種控制relational database 的語言 而relational database 是常用的儲存資料方法 而SQL 有不少分支像 MySQL Oracle SQL MsSQ">
 
 
 
@@ -122,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://lxlxx.github.io/2019/03/20/Xcode-and-Git-2/"/>
+  <link rel="canonical" href="https://lxlxx.github.io/2019/04/05/SQL-1/"/>
 
 
 
 
 
-  <title>Git 常用功能簡介 | IT 學習筆記</title>
+  <title>SQL_1 | IT 學習筆記</title>
   
 
 
@@ -265,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lxlxx.github.io/2019/03/20/Xcode-and-Git-2/">
+    <link itemprop="mainEntityOfPage" href="https://lxlxx.github.io/2019/04/05/SQL-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="懷谷">
@@ -282,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Git 常用功能簡介</h1>
+          <h1 class="post-title" itemprop="name headline">SQL_1</h1>
         
 
         <div class="post-meta">
@@ -294,8 +292,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-20T09:10:58+08:00">
-                2019-03-19
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-05T22:12:41-07:00">
+                2019-04-06
               </time>
             
 
@@ -332,94 +330,17 @@
       
 
       
-        <h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="基本功能"><a href="#基本功能" class="headerlink" title="基本功能"></a>基本功能</h2><table>
-<thead>
-<tr>
-<th>no.</th>
-<th>function name</th>
-<th>output</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>git init</td>
-<td>Init 當下目錄成Git 項目</td>
-</tr>
-<tr>
-<td>2</td>
-<td>git clone</td>
-<td>第一次 下載一個Git 項目至本地</td>
-</tr>
-<tr>
-<td>3</td>
-<td>git pull</td>
-<td>取回遠程倉庫修改至本地倉庫并合并至工作區</td>
-</tr>
-<tr>
-<td>4</td>
-<td>git add</td>
-<td>添加當下目錄文件之修改至暫存區</td>
-</tr>
-<tr>
-<td>5</td>
-<td>git commit</td>
-<td>提交暫存區修改至本地倉庫</td>
-</tr>
-<tr>
-<td>6</td>
-<td>git push</td>
-<td>推代碼至遠程倉庫</td>
-</tr>
-<tr>
-<td>7</td>
-<td>git diff</td>
-<td>顯示暫存區和工作區的差別</td>
-</tr>
-<tr>
-<td>8</td>
-<td>git checkout [someBranch]</td>
-<td>切換到指定分支</td>
-</tr>
-<tr>
-<td>9</td>
-<td>get fetch</td>
-<td>下載遠程倉庫到當下倉庫 但未至工作區</td>
-</tr>
-<tr>
-<td>10</td>
-<td>git merge</td>
-<td>合并指定分支至當下分支</td>
-</tr>
-<tr>
-<td>11</td>
-<td>git branch [someBranch]</td>
-<td>開一個新的分支</td>
-</tr>
-<tr>
-<td>12</td>
-<td>git log</td>
-<td>檢視提交的歷史記錄</td>
-</tr>
-<tr>
-<td>13</td>
-<td>git reflog</td>
-<td>檢視提交改變的所有歷史記錄</td>
-</tr>
-<tr>
-<td>13</td>
-<td>git reset [target]</td>
-<td>切換至指定歷史記錄</td>
-</tr>
-</tbody>
-</table>
-<p>附上一張Git 工作流程圖 增加對以上功能的了解</p>
-<p><img src="https://image.slidesharecdn.com/2-150113000441-conversion-gate01/95/-12-638.jpg?cb=1421236602" alt="alt text" title="Git 工作流程圖"></p>
-<h2 id="Branch"><a href="#Branch" class="headerlink" title="Branch"></a>Branch</h2><p>Branch 可以說是Git 的殺手鐧</p>
-<p>因為Git 開分支並不用把整個Project都Copy一次</p>
-<p>而只是記錄變化 令Git 開分支的速度和開支比其他VCS要低很多</p>
-<p>開分支和切換的方法在上面的表格就有了</p>
-<h1 id="結尾"><a href="#結尾" class="headerlink" title="結尾"></a>結尾</h1><p>正在想下一篇到底寫繼續iOS or SQL </p>
+        <h1 id="開篇"><a href="#開篇" class="headerlink" title="開篇"></a>開篇</h1><p>在之前的Git 文章曾說過 Git 是現在程式員必學的技能之一</p>
+<p>今天要說的就是另一個幾乎必學的語言 SQL</p>
+<p>一般程式員都最少會一種主要的程式語言 ＋ Git ＋ SQL</p>
+<p>就像是坦補DD 一樣的鐵三角</p>
+<p>SQL 是一種控制relational database 的語言</p>
+<p>而relational database 是常用的儲存資料方法</p>
+<p>而SQL 有不少分支像 MySQL Oracle SQL MsSQL 等等之類</p>
+<p>但儲存資料前需要不少的準備工作</p>
+<p>其中之一就是設計DB 的架構</p>
+<p>而 Normalization 是必不可少的環節</p>
+<h1 id="結尾"><a href="#結尾" class="headerlink" title="結尾"></a>結尾</h1><p>下篇SQL 將寫SQL Normalization 1NF 2NF 3NF 3.5NF 的筆記</p>
 
       
     </div>
@@ -437,7 +358,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Git/" rel="tag"># Git</a>
+            <a href="/tags/SQL/" rel="tag"># SQL</a>
           
         </div>
       
@@ -450,8 +371,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/24/iOS-UI-build-in-SB-XIB-PureCode-Texture-ASDK-WEEX/" rel="next" title="iOS UI build in SB XIB PureCode Texture(ASDK) WEEX">
-                <i class="fa fa-chevron-left"></i> iOS UI build in SB XIB PureCode Texture(ASDK) WEEX
+              <a href="/2019/03/26/iOS-Building-GUI/" rel="next" title="iOS Building GUI">
+                <i class="fa fa-chevron-left"></i> iOS Building GUI
               </a>
             
           </div>
@@ -460,8 +381,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/03/27/iOS-Building-GUI/" rel="prev" title="iOS Building GUI">
-                iOS Building GUI <i class="fa fa-chevron-right"></i>
+              <a href="/2019/04/06/SQL-2/" rel="prev" title="SQL_2">
+                SQL_2 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -539,7 +460,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -552,7 +473,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -585,7 +506,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">1.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本功能"><span class="nav-number">1.1.</span> <span class="nav-text">基本功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Branch"><span class="nav-number">1.2.</span> <span class="nav-text">Branch</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#結尾"><span class="nav-number">2.</span> <span class="nav-text">結尾</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#開篇"><span class="nav-number">1.</span> <span class="nav-text">開篇</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#結尾"><span class="nav-number">2.</span> <span class="nav-text">結尾</span></a></li></ol></div>
             
 
           </div>
@@ -605,7 +526,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
