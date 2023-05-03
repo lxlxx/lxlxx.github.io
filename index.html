@@ -1,23 +1,2381 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
 
-{% block title %}{{ config.title }}{% if theme.index_with_subtitle and config.subtitle %} - {{config.subtitle }}{% endif %}{% endblock %}
 
-{% block page_class %}
-  {% if is_home() %}page-home{% endif -%}
-{% endblock %}
 
-{% block content %}
+  
+
+
+<html class="theme-next pisces use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="勤學如春起之苗，不見其增，日有所長；輟學如磨刀之石，不見其損，日有所虧">
+<meta property="og:type" content="website">
+<meta property="og:title" content="IT 學習筆記">
+<meta property="og:url" content="https://lxlxx.github.io/index.html">
+<meta property="og:site_name" content="IT 學習筆記">
+<meta property="og:description" content="勤學如春起之苗，不見其增，日有所長；輟學如磨刀之石，不見其損，日有所虧">
+<meta property="og:locale">
+<meta property="article:author" content="懷谷 Ray yu">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://lxlxx.github.io/"/>
+
+
+
+
+
+  <title>IT 學習筆記</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 7.0.0-rc1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+  page-home">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">IT 學習筆記</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
   <section id="posts" class="posts-expand">
-    {% for post in page.posts %}
-      {{ post_template.render(post, true) }}
-    {% endfor %}
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lxlxx.github.io/2022/05/20/mysql-index-mechanism/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IT 學習筆記">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/05/20/mysql-index-mechanism/" itemprop="url">MySQL index mechanism</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-05-21T01:50:54-04:00">
+                2022-05-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p><img src="https://www.mdpi.com/electronics/electronics-09-01348/article_deploy/html/images/electronics-09-01348-g005-550.jpg" alt="alt text" title="A table linked by a traditional secondary index."></p>
+<p>When data is stored on disk-based storage devices, it is stored as blocks of data. These blocks are accessed in their entirety, making them the atomic disk access operation. Disk blocks are structured in much the same way as linked lists; both contain a section for data, a pointer to the location of the next node (or block), and both need not be stored contiguously.</p>
+<p>Due to the fact that a number of records can only be sorted on one field, we can state that searching on a field that isn’t sorted requires a Linear Search which requires (N+1)&#x2F;2 block accesses (on average), where N is the number of blocks that the table spans. If that field is a non-key field (i.e. doesn’t contain unique entries) then the entire tablespace must be searched at N block accesses.</p>
+<p>Whereas with a sorted field, a Binary Search may be used, which has log2 N block accesses. Also since the data is sorted given a non-key field, the rest of the table doesn’t need to be searched for duplicate values, once a higher value is found. Thus the performance increase is substantial.</p>
+<h1 id="What-is-indexing"><a href="#What-is-indexing" class="headerlink" title="What is indexing?"></a>What is indexing?</h1><p>Indexing is a way of sorting a number of records on multiple fields. Creating an index on a field in a table creates another data structure which holds the field value, and a pointer to the record it relates to. This index structure is then sorted, allowing Binary Searches to be performed on it.</p>
+<p>The downside to indexing is that these indices require additional space on the disk since the indices are stored together in a table using the MyISAM engine, this file can quickly reach the size limits of the underlying file system if many fields within the same table are indexed.</p>
+<h1 id="How-does-it-work"><a href="#How-does-it-work" class="headerlink" title="How does it work?"></a>How does it work?</h1><p>Firstly, let’s outline a sample database table schema;</p>
+<table>
+<thead>
+<tr>
+<th>Field name</th>
+<th>Data type</th>
+<th>Size on disk</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>id (Primary key)</td>
+<td>Unsigned INT</td>
+<td>4 bytes</td>
+</tr>
+<tr>
+<td>firstName</td>
+<td>Char(50)</td>
+<td>50 bytes</td>
+</tr>
+<tr>
+<td>lastName</td>
+<td>Char(50)</td>
+<td>50 bytes</td>
+</tr>
+<tr>
+<td>emailAddress</td>
+<td>Char(100)</td>
+<td>100 bytes</td>
+</tr>
+<tr>
+<td>Note: char was used in place of varchar to allow for an accurate size on disk value. This sample database contains five million rows and is unindexed. The performance of several queries will now be analyzed. These are a query using the id (a sorted key field) and one using the firstName (a non-key unsorted field).</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id="Example-1-sorted-vs-unsorted-fields"><a href="#Example-1-sorted-vs-unsorted-fields" class="headerlink" title="Example 1 - sorted vs unsorted fields"></a>Example 1 - sorted vs unsorted fields</h1><p>Given our sample database of r &#x3D; 5,000,000 records of a fixed size giving a record length of R &#x3D; 204 bytes and they are stored in a table using the MyISAM engine which is using the default block size B &#x3D; 1,024 bytes. The blocking factor of the table would be bfr &#x3D; (B&#x2F;R) &#x3D; 1024&#x2F;204 &#x3D; 5 records per disk block. The total number of blocks required to hold the table is N &#x3D; (r&#x2F;bfr) &#x3D; 5000000&#x2F;5 &#x3D; 1,000,000 blocks.</p>
+<p>A linear search on the id field would require an average of N&#x2F;2 &#x3D; 500,000 block accesses to find a value, given that the id field is a key field. But since the id field is also sorted, a binary search can be conducted requiring an average of log2 1000000 &#x3D; 19.93 &#x3D; 20 block accesses. Instantly we can see this is a drastic improvement.</p>
+<p>Now the firstName field is neither sorted nor a key field, so a binary search is impossible, nor are the values unique, and thus the table will require searching to the end for an exact N &#x3D; 1,000,000 block accesses. It is this situation that indexing aims to correct.</p>
+<p>Given that an index record contains only the indexed field and a pointer to the original record, it stands to reason that it will be smaller than the multi-field record that it points to. So the index itself requires fewer disk blocks than the original table, which therefore requires fewer block accesses to iterate through. The schema for an index on the firstName field is outlined below;</p>
+<table>
+<thead>
+<tr>
+<th>Field name</th>
+<th>Data type</th>
+<th>Size on disk</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>firstName</td>
+<td>Char(50)</td>
+<td>50 bytes</td>
+</tr>
+<tr>
+<td>(record pointer)</td>
+<td>Special</td>
+<td>4 bytes</td>
+</tr>
+</tbody></table>
+<p>Note: Pointers in MySQL are 2, 3, 4 or 5 bytes in length depending on the size of the table.</p>
+<h1 id="Example-2-indexing"><a href="#Example-2-indexing" class="headerlink" title="Example 2 - indexing"></a>Example 2 - indexing</h1><p>Given our sample database of r &#x3D; 5,000,000 records with an index record length of R &#x3D; 54 bytes and using the default block size B &#x3D; 1,024 bytes. The blocking factor of the index would be bfr &#x3D; (B&#x2F;R) &#x3D; 1024&#x2F;54 &#x3D; 18 records per disk block. The total number of blocks required to hold the index is N &#x3D; (r&#x2F;bfr) &#x3D; 5000000&#x2F;18 &#x3D; 277,778 blocks.</p>
+<p>Now a search using the firstName field can utilize the index to increase performance. This allows for a binary search of the index with an average of log2 277778 &#x3D; 18.08 &#x3D; 19 block accesses. To find the address of the actual record, which requires a further block access to read, bringing the total to 19 + 1 &#x3D; 20 block accesses, a far cry from the 1,000,000 block accesses required to find a firstName match in the non-indexed table.</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><blockquote>
+<p><a href="https://stackoverflow.com/questions/1108/how-does-database-indexing-work">https://stackoverflow.com/questions/1108/how-does-database-indexing-work</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://dataschool.com/sql-optimization/how-indexing-works/">https://dataschool.com/sql-optimization/how-indexing-works/</a><br><a href="https://www.mdpi.com/2079-9292/9/9/1348/htm">https://www.mdpi.com/2079-9292/9/9/1348/htm</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lxlxx.github.io/2022/05/19/B-tree-B-tree-M-way-search/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IT 學習筆記">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/05/19/B-tree-B-tree-M-way-search/" itemprop="url">B+-tree B-tree M-way search</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-05-19T22:43:00-04:00">
+                2022-05-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>MySQL index structure is B+-tree. B+-tree is an extension of B-tree, and B-tree is type of M-way searching.</p>
+<h1 id="Body"><a href="#Body" class="headerlink" title="Body"></a>Body</h1><h2 id="M-way-search"><a href="#M-way-search" class="headerlink" title="M-way search"></a>M-way search</h2><p>An m-way tree is a rooted tree in which each node has no more than m children. A binary tree is the special case where m &#x3D; 2, and a ternary tree is another case with m &#x3D; 3 that limits its children to three.</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b8/Karytree.png/440px-Karytree.png" alt="alt text" title="An example of a m-ary tree with m=5 wikipedia"></p>
+<h2 id="B-tree"><a href="#B-tree" class="headerlink" title="B-tree"></a>B-tree</h2><p>B-tree is an M-way search tree with two special properties:</p>
+<ol>
+<li>It is perfectly balanced: every leaf node is at the same depth.<br>(With a balanced tree, access1 is O(log n).<br>With an unbalanced tree, access1 is O(n) (worst case).)</li>
+</ol>
+<p><img src="https://i.stack.imgur.com/tjkrr.png" alt="alt text" title="Balanced vs Unbalanced Binary Tree by Andreas stackoverflow"></p>
+<ol start="2">
+<li>Every node, except perhaps the root, is at least half-full, i.e. contains M&#x2F;2 or more values (of course, it cannot contain more than M-1 values). The root may have any number of values (1 to M-1).</li>
+</ol>
+<h2 id="B-tree-1"><a href="#B-tree-1" class="headerlink" title="B+-tree"></a>B+-tree</h2><p>Difference Between B-Tree And B+ Tree</p>
+<p>|  B-tree | B+-tree |<br>| ——-  | —      | —–    |<br>| Data is stored in leaf nodes as well as internal nodes.  | Data is stored only in leaf nodes. |<br>| Leaf nodes cannot be linked together.  |  Leaf nodes are linked together to form a linked list.|<br>| Searching is a bit slower as data is stored in internal as well as leaf nodes.  | Searching is faster as the data is stored only in the leaf nodes. |<br>| Deletion operation is complex.   | Deletion operation is easy as data can be directly deleted from the leaf nodes. |<br>| No redundant search keys are present.  | Redundant search keys may be present. |</p>
+<p><img src="https://i.stack.imgur.com/l6UyF.png" alt="alt text" title="B tree B+ tree by Rose Perrone stackoverflow"></p>
+<h3 id="Searching-is-faster-as-the-data-is-stored-only-in-the-leaf-nodes"><a href="#Searching-is-faster-as-the-data-is-stored-only-in-the-leaf-nodes" class="headerlink" title="Searching is faster as the data is stored only in the leaf nodes."></a>Searching is faster as the data is stored only in the leaf nodes.</h3><p>B+ trees don’t have data associated with interior nodes, more keys can fit on a page of memory. Therefore, it will require fewer cache misses in order to access data that is on a leaf node.</p>
+<p>The leaf nodes of B+ trees are linked, so doing a full scan of all objects in a tree requires just one linear pass through all the leaf nodes. A B tree, on the other hand, would require a traversal of every level in the tree. This full-tree traversal will likely involve more cache misses than the linear traversal of B+ leaves.</p>
+<h3 id="B-tree-Deletion-operation-is-complex"><a href="#B-tree-Deletion-operation-is-complex" class="headerlink" title="B-tree Deletion operation is complex."></a>B-tree Deletion operation is complex.</h3><p>Data is stored in leaf nodes as well as internal nodes, so there are two different situations we need to deal with, and B+-tree only stores data in leaf nodes.</p>
+<h3 id="No-redundant-search-keys-are-present"><a href="#No-redundant-search-keys-are-present" class="headerlink" title="No redundant search keys are present."></a>No redundant search keys are present.</h3><p>B-tree only includes &lt; &gt; equal is not an option.</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><blockquote>
+<p><a href="https://www.youtube.com/watch?v=aZjYr87r1b8&ab_channel=AbdulBari">https://www.youtube.com/watch?v=aZjYr87r1b8&amp;ab_channel=AbdulBari</a><br><a href="https://www.youtube.com/watch?v=C_q5ccN84C8&ab_channel=FullstackAcademy">https://www.youtube.com/watch?v=C_q5ccN84C8&amp;ab_channel=FullstackAcademy</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.softwaretestinghelp.com/b-tree-data-structure-cpp/">https://www.softwaretestinghelp.com/b-tree-data-structure-cpp/</a><br><a href="https://webdocs.cs.ualberta.ca/~holte/T26/b-trees.html">https://webdocs.cs.ualberta.ca/~holte/T26/b-trees.html</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://stackoverflow.com/questions/59206128/balanced-vs-unbalanced-binary-tree-clarification-needed">https://stackoverflow.com/questions/59206128/balanced-vs-unbalanced-binary-tree-clarification-needed</a><br><a href="https://stackoverflow.com/questions/870218/what-are-the-differences-between-b-trees-and-b-trees">https://stackoverflow.com/questions/870218/what-are-the-differences-between-b-trees-and-b-trees</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://en.wikipedia.org/wiki/M-ary_tree">https://en.wikipedia.org/wiki/M-ary_tree</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lxlxx.github.io/2019/05/12/Git-Example/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IT 學習筆記">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/12/Git-Example/" itemprop="url">Git Example</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-12T23:00:59-04:00">
+                2019-05-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="開篇"><a href="#開篇" class="headerlink" title="開篇"></a>開篇</h1><p>簡單的示範一下使用Git 的例子</p>
+<p>例子將模擬二個2位員工的分工和合併</p>
+<p>2位員工將會在各自的branch 加入新的file 和同時更改一個共用的file</p>
+<p>就如日常中二個人合作寫project的情況</p>
+<p>例子將用.swift 的文件示範</p>
+<p>不要使用 apple rich text 會出現merge 的問題</p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>首先開一個folder</p>
+<p>在里面加入一個config.swift</p>
+<p>然後在config.swift寫入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let SettingCommon = &quot;Common&quot;</span><br></pre></td></tr></table></figure>
+<p>再打開terminal cd 到folder 的位置 輸入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+<p>成功會出現</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Initialized empty Git repository in folder 的位置</span><br></pre></td></tr></table></figure>
+<p>然後繼續在terminal 輸入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &quot;git init&quot;</span><br></pre></td></tr></table></figure>
+<p>成功會出現</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[master (root-commit) 9ed71be] git init</span><br><span class="line">1 file changed, 8 insertions(+)</span><br><span class="line">create mode 100644 config.swift</span><br></pre></td></tr></table></figure>
+<p>然後開二個branch 模擬二人合作的情況 在terminal 輸入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch user1</span><br><span class="line">git branch user2</span><br></pre></td></tr></table></figure>
+<p>切換到user1 branch 模擬user 1 工作 在terminal 輸入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout user1</span><br></pre></td></tr></table></figure>
+<p>成功會出現</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Switched to branch &#x27;user1&#x27;</span><br></pre></td></tr></table></figure>
+<p>然後在config.swift加入一行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let SettingCommon = &quot;Common&quot;</span><br><span class="line">let SettingOne = &quot;one&quot; &lt;-- 加入的一行</span><br></pre></td></tr></table></figure>
+<p>加入一個func1.swift</p>
+<p>在func1.swift寫入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let func1 ＝ &quot;func1&quot;</span><br></pre></td></tr></table></figure>
+<p>然後在terminal 輸入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &quot;user1 init&quot;</span><br></pre></td></tr></table></figure>
+<p>再切換到user2 branch 模擬user 2 工作 在terminal 輸入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout user2</span><br></pre></td></tr></table></figure>
+<p>成功會出現</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Switched to branch &#x27;user2&#x27;</span><br></pre></td></tr></table></figure>
+<p>然後在config.swift加入一行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let SettingCommon = &quot;Common&quot;</span><br><span class="line">let SettingTwo = &quot;two&quot; &lt;-- 加入的一行</span><br></pre></td></tr></table></figure>
+<p>加入一個func2.swift</p>
+<p>在func2.swift寫入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let func2 ＝ &quot;func2&quot;</span><br></pre></td></tr></table></figure>
+<p>然後在terminal 輸入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &quot;user2 init&quot;</span><br></pre></td></tr></table></figure>
+<p>回到master branch 準備merge<br>在terminal 輸入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout master</span><br></pre></td></tr></table></figure>
+<p>成功會出現</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Switched to branch &#x27;master&#x27;</span><br></pre></td></tr></table></figure>
+<p>在terminal 輸入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge user1</span><br></pre></td></tr></table></figure>
+<p>成功會出現</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Updating 9ed71be..8df35f6</span><br><span class="line">Fast-forward</span><br><span class="line">config.swift | 1 +</span><br><span class="line">func1.swift  | 8 ++++++++</span><br><span class="line">2 files changed, 9 insertions(+)</span><br><span class="line">create mode 100644 func1.swift</span><br></pre></td></tr></table></figure>
+<p>再merge user2在terminal 輸入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge user2</span><br></pre></td></tr></table></figure>
+<p>成功會出現</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Auto-merging config.swift</span><br><span class="line">CONFLICT (content): Merge conflict in config.swift</span><br><span class="line">Automatic merge failed; fix conflicts and then commit the result.</span><br></pre></td></tr></table></figure>
+<p>打開config.swift 會看見</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let SettingCommon = &quot;Common&quot;</span><br><span class="line">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</span><br><span class="line">let SettingOne = &quot;one&quot;</span><br><span class="line">=======</span><br><span class="line">let SettingTwo = &quot;two&quot;</span><br><span class="line">&gt;&gt;&gt;&gt;&gt;&gt;&gt; user2</span><br></pre></td></tr></table></figure>
+<p>把以下的三行刪掉</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</span><br><span class="line">=======</span><br><span class="line">&gt;&gt;&gt;&gt;&gt;&gt;&gt; user2</span><br></pre></td></tr></table></figure>
+<p>文件將變成</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let SettingCommon = &quot;Common&quot;</span><br><span class="line">let SettingOne = &quot;one&quot;</span><br><span class="line">let SettingTwo = &quot;two&quot;</span><br></pre></td></tr></table></figure>
+<p>回到terminal 輸入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &quot;merge two func&quot;</span><br></pre></td></tr></table></figure>
+<p>成功會出現</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[master 119ec7e] merge two func</span><br></pre></td></tr></table></figure>
+
+<p>完成 灑花</p>
+<h1 id="結尾"><a href="#結尾" class="headerlink" title="結尾"></a>結尾</h1><p>下篇 Git 將在 Xcode 的 project 中示範使用 Git</p>
+<span style="color:white">
+*唠騷*
+*棄我去者 昨日之日不可留 亂我心者 今日之日多煩憂
+四方八面各式各樣的煩悶揮之不去
+身體健康出現問題
+西醫看不好
+中藥飲不少 
+略有好轉
+只能說革命尚未成功 同志仍需努力
+*
+</span>
+
+
+
+
+
+
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lxlxx.github.io/2019/04/06/SQL-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IT 學習筆記">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/06/SQL-2/" itemprop="url">SQL_2</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-07T00:56:40-04:00">
+                2019-04-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="https://live.staticflickr.com/7813/47519559552_37319f0a78.jpg" alt="alt text" title="SQL Normalization"></p>
+<h1 id="Functional-Dependency"><a href="#Functional-Dependency" class="headerlink" title="Functional Dependency"></a>Functional Dependency</h1><p>Prime attribute -&gt; non-Prime attribute</p>
+<h1 id="Partial-Dependency"><a href="#Partial-Dependency" class="headerlink" title="Partial Dependency"></a>Partial Dependency</h1><p>Part of Prime attribute -&gt; non-Prime attribute</p>
+<h1 id="Transitive-Dependency"><a href="#Transitive-Dependency" class="headerlink" title="Transitive Dependency"></a>Transitive Dependency</h1><p>non-Prime attribute -&gt; non-Prime attribute</p>
+<h1 id="remove-in-BCNF"><a href="#remove-in-BCNF" class="headerlink" title="remove in BCNF"></a>remove in BCNF</h1><p>non-Prime attribute -&gt; Prime attribute</p>
+<h1 id="1NF"><a href="#1NF" class="headerlink" title="1NF"></a>1NF</h1><ol>
+<li>Eliminate repeating groups in table ( 消滅多重記錄 每一個Cell 只有一組資料 )</li>
+<li>Identify each set of related data with a primary key (每一條資料都需要獨一無二的主鍵)</li>
+</ol>
+<p>Trading Table</p>
+<table>
+<thead>
+<tr>
+<th>Customer Name</th>
+<th>Date</th>
+<th>Number</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Mr. Chan</td>
+<td>Monday</td>
+<td>19.00, -28.00</td>
+</tr>
+<tr>
+<td>Mr. Wong</td>
+<td>Wed</td>
+<td>-80.00, -80.00</td>
+</tr>
+<tr>
+<td>Mr. Lee</td>
+<td>Friday</td>
+<td>100.00, -40.00, 150</td>
+</tr>
+</tbody></table>
+<ol>
+<li>after 1NF.1<br>Trading Table</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Customer Name</th>
+<th>Date</th>
+<th>Number</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Mr. Chan</td>
+<td>Monday</td>
+<td>19.00</td>
+</tr>
+<tr>
+<td>Mr. Chan</td>
+<td>Monday</td>
+<td>-28.00</td>
+</tr>
+<tr>
+<td>Mr. Wong</td>
+<td>Wed</td>
+<td>-80.00</td>
+</tr>
+<tr>
+<td>Mr. Wong</td>
+<td>Wed</td>
+<td>-80.00</td>
+</tr>
+<tr>
+<td>Mr. Lee</td>
+<td>Friday</td>
+<td>100.00</td>
+</tr>
+<tr>
+<td>Mr. Lee</td>
+<td>Friday</td>
+<td>-40.00</td>
+</tr>
+<tr>
+<td>Mr. Lee</td>
+<td>Friday</td>
+<td>150</td>
+</tr>
+</tbody></table>
+<ol start="2">
+<li>after 1NF.2<br>Trading Table</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>primary key</th>
+<th>Customer Name</th>
+<th>Date</th>
+<th>Number</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Mr. Chan</td>
+<td>Monday</td>
+<td>19.00</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Mr. Chan</td>
+<td>Monday</td>
+<td>-28.00</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Mr. Wong</td>
+<td>Wed</td>
+<td>-80.00</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Mr. Wong</td>
+<td>Wed</td>
+<td>-80.00</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Mr. Lee</td>
+<td>Friday</td>
+<td>100.00</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Mr. Lee</td>
+<td>Friday</td>
+<td>-40.00</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Mr. Lee</td>
+<td>Friday</td>
+<td>150</td>
+</tr>
+</tbody></table>
+<h1 id="2NF"><a href="#2NF" class="headerlink" title="2NF"></a>2NF</h1><ol>
+<li>be in firsts normal form (1NF) (符合1NF)</li>
+<li>All attributes (Non-key Columns) dependent on the key (所有資料都是完全功能相依於主鍵 資料需直接相關於主鍵)</li>
+</ol>
+<p>Price Table</p>
+<table>
+<thead>
+<tr>
+<th>Item ID (primary key)</th>
+<th>Price</th>
+<th>Supplier ID</th>
+<th>Supplier Name</th>
+<th>Supplier Address</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>100</td>
+<td>59</td>
+<td>1</td>
+<td>A Supplier</td>
+<td>SA A</td>
+</tr>
+<tr>
+<td>102</td>
+<td>20</td>
+<td>1</td>
+<td>A Supplier</td>
+<td>SA A</td>
+</tr>
+<tr>
+<td>100</td>
+<td>69</td>
+<td>2</td>
+<td>B Supplier</td>
+<td>SA B</td>
+</tr>
+</tbody></table>
+<ol start="2">
+<li>after 2NF.2</li>
+</ol>
+<p>Price Table</p>
+<table>
+<thead>
+<tr>
+<th>Item ID (primary key)</th>
+<th>Supplier ID</th>
+<th>Price</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>100</td>
+<td>1</td>
+<td>59</td>
+</tr>
+<tr>
+<td>102</td>
+<td>1</td>
+<td>20</td>
+</tr>
+<tr>
+<td>100</td>
+<td>2</td>
+<td>69</td>
+</tr>
+</tbody></table>
+<p>Supplier Table</p>
+<table>
+<thead>
+<tr>
+<th>Supplier ID (primary key)</th>
+<th>Supplier Name</th>
+<th>Supplier Address</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>A Supplier</td>
+<td>SA A</td>
+</tr>
+<tr>
+<td>2</td>
+<td>B Supplier</td>
+<td>SA B</td>
+</tr>
+</tbody></table>
+<h1 id="3NF"><a href="#3NF" class="headerlink" title="3NF"></a>3NF</h1><ol>
+<li>the entity is in second normal form (2NF) (符合2NF)</li>
+<li>no non-prime attribute is transitively dependent of any key ( 如果 AB 可以求得C  AB -&gt; C , C 就不應該出現)</li>
+</ol>
+<h2 id="EX1"><a href="#EX1" class="headerlink" title="EX1"></a>EX1</h2><p>Order Table</p>
+<table>
+<thead>
+<tr>
+<th>Order ID</th>
+<th>Customer Name</th>
+<th>Unit Price</th>
+<th>Quantity</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>100</td>
+<td>David</td>
+<td>35</td>
+<td>3</td>
+<td>105</td>
+</tr>
+<tr>
+<td>101</td>
+<td>Jim</td>
+<td>25</td>
+<td>2</td>
+<td>50</td>
+</tr>
+<tr>
+<td>102</td>
+<td>Bob</td>
+<td>25</td>
+<td>3</td>
+<td>75</td>
+</tr>
+</tbody></table>
+<p>Total可由 Unit Price + Quantity 求得 (Unit Price + Quantity ) -&gt; Total<br>所以刪除 Total</p>
+<table>
+<thead>
+<tr>
+<th>Order ID</th>
+<th>Customer Name</th>
+<th>Unit Price</th>
+<th>Quantity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>100</td>
+<td>David</td>
+<td>35</td>
+<td>3</td>
+</tr>
+<tr>
+<td>101</td>
+<td>Jim</td>
+<td>25</td>
+<td>2</td>
+</tr>
+<tr>
+<td>102</td>
+<td>Bob</td>
+<td>25</td>
+<td>3</td>
+</tr>
+</tbody></table>
+<h2 id="EX2"><a href="#EX2" class="headerlink" title="EX2"></a>EX2</h2><p>Price Table</p>
+<table>
+<thead>
+<tr>
+<th>Item ID</th>
+<th>Price</th>
+<th>Supplier ID</th>
+<th>Supplier Name</th>
+<th>Supplier Address</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>100</td>
+<td>59</td>
+<td>1</td>
+<td>A Supplier</td>
+<td>SA A</td>
+</tr>
+<tr>
+<td>102</td>
+<td>20</td>
+<td>1</td>
+<td>A Supplier</td>
+<td>SA A</td>
+</tr>
+<tr>
+<td>100</td>
+<td>69</td>
+<td>2</td>
+<td>B Supplier</td>
+<td>SA B</td>
+</tr>
+</tbody></table>
+<p>Supplier Address 可由 Supplier ID 求得  Supplier ID -&gt;  Supplier Address<br>所以刪除 Supplier Address  結果如上2NF 例子</p>
+<h1 id="BCNF-x2F-3-5-NF"><a href="#BCNF-x2F-3-5-NF" class="headerlink" title="BCNF &#x2F; 3.5 NF"></a>BCNF &#x2F; 3.5 NF</h1><ol>
+<li>It should be in 3re Normal Form</li>
+<li>For any dependency  A -&gt; B, A should be a super key</li>
+</ol>
+<p>College Enrollment Table</p>
+<table>
+<thead>
+<tr>
+<th>student_id</th>
+<th>subject</th>
+<th>professor</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>101</td>
+<td>Java</td>
+<td>P.Java</td>
+</tr>
+<tr>
+<td>101</td>
+<td>C++</td>
+<td>P.Cpp</td>
+</tr>
+<tr>
+<td>102</td>
+<td>Java</td>
+<td>P.Java.2</td>
+</tr>
+<tr>
+<td>103</td>
+<td>C#</td>
+<td>P.Chash</td>
+</tr>
+<tr>
+<td>104</td>
+<td>Java</td>
+<td>P.Java</td>
+</tr>
+</tbody></table>
+<p>Candidate Key<br>(student_id, subject) -&gt; professor<br>(non-prime attribute) professor -&gt; subject (prime attribute)<br>professor can find subject but professor not super key NOT IN BCNF</p>
+<table>
+<thead>
+<tr>
+<th>p_id</th>
+<th>professor</th>
+<th>subject</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>201</td>
+<td>P.Java</td>
+<td>Java</td>
+</tr>
+<tr>
+<td>202</td>
+<td>P.Cpp</td>
+<td>C++</td>
+</tr>
+<tr>
+<td>203</td>
+<td>P.Java.2</td>
+<td>Java</td>
+</tr>
+<tr>
+<td>204</td>
+<td>P.Chash</td>
+<td>C#</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>student_id</th>
+<th>p_id</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>101</td>
+<td>P.Java</td>
+</tr>
+<tr>
+<td>101</td>
+<td>P.Cpp</td>
+</tr>
+<tr>
+<td>102</td>
+<td>P.Java_2</td>
+</tr>
+<tr>
+<td>103</td>
+<td>P.Chash</td>
+</tr>
+<tr>
+<td>104</td>
+<td>P.Java</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><a href="https://www.youtube.com/watch?v=NNjUhvvwOrk">https://www.youtube.com/watch?v=NNjUhvvwOrk</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://zh.wikipedia.org/wiki/%E7%AC%AC%E4%B8%80%E6%AD%A3%E8%A6%8F%E5%8C%96">https://zh.wikipedia.org/wiki/第一正規化</a><br><a href="https://en.wikipedia.org/wiki/First_normal_form">https://en.wikipedia.org/wiki/First_normal_form</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://epaper.gotop.com.tw/pdf/AED000900.pdf">http://epaper.gotop.com.tw/pdf/AED000900.pdf</a><br><a href="http://www.gotop.com.tw/epaper/e0815/AED000900.pdf">http://www.gotop.com.tw/epaper/e0815/AED000900.pdf</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://faculty.stust.edu.tw/~jehuang/oracle/ch3/3-1.htm">http://faculty.stust.edu.tw/~jehuang/oracle/ch3/3-1.htm</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://cc.cust.edu.tw/~ccchen/doc/db_04.pdf">http://cc.cust.edu.tw/~ccchen/doc/db_04.pdf</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.youtube.com/watch?v=UrYLYV7WSHM&t=935s">https://www.youtube.com/watch?v=UrYLYV7WSHM&amp;t=935s</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lxlxx.github.io/2019/04/05/SQL-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IT 學習筆記">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/05/SQL-1/" itemprop="url">SQL_1</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-06T01:12:41-04:00">
+                2019-04-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="開篇"><a href="#開篇" class="headerlink" title="開篇"></a>開篇</h1><p>在之前的Git 文章曾說過 Git 是現在程式員必學的技能之一</p>
+<p>今天要說的就是另一個幾乎必學的語言 SQL</p>
+<p>一般程式員都最少會一種主要的程式語言 ＋ Git ＋ SQL</p>
+<p>就像是坦補DD 一樣的鐵三角</p>
+<p>SQL 是一種控制relational database 的語言</p>
+<p>而relational database 是常用的儲存資料方法</p>
+<p>而SQL 有不少分支像 MySQL Oracle SQL MsSQL 等等之類</p>
+<p>但儲存資料前需要不少的準備工作</p>
+<p>其中之一就是設計DB 的架構</p>
+<p>而 Normalization 是必不可少的環節</p>
+<h1 id="結尾"><a href="#結尾" class="headerlink" title="結尾"></a>結尾</h1><p>下篇SQL 將寫SQL Normalization 1NF 2NF 3NF 3.5NF 的筆記</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lxlxx.github.io/2019/03/26/iOS-Building-GUI/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IT 學習筆記">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/26/iOS-Building-GUI/" itemprop="url">iOS Building GUI</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-26T23:10:02-04:00">
+                2019-03-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="XYWH"><a href="#XYWH" class="headerlink" title="XYWH"></a>XYWH</h2><p>開一個iOS 的 project<br>然後在default的VC中的viewdidload中加入</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> UIKit</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ViewController</span>: <span class="title class_">UIViewController</span> &#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">override</span> <span class="keyword">func</span> <span class="title function_">viewDidLoad</span>() &#123;</span><br><span class="line">    <span class="keyword">super</span>.viewDidLoad()</span><br><span class="line">    <span class="comment">// Do any additional setup after loading the view, typically from a nib.</span></span><br><span class="line">    <span class="keyword">let</span> <span class="type">XYWDView</span> <span class="operator">=</span> <span class="type">UIView</span>(frame: <span class="type">CGRect</span>(x: <span class="number">100</span>, y: <span class="number">100</span>, width: <span class="number">100</span>, height: <span class="number">100</span>))</span><br><span class="line">    <span class="type">XYWDView</span>.backgroundColor <span class="operator">=</span> .red</span><br><span class="line">    <span class="keyword">self</span>.view.addSubview(<span class="type">XYWDView</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://farm8.staticflickr.com/7911/47419347252_62a6cdecb0_n.jpg" alt="alt text" title="顯示如上"></p>
+<h2 id="Storyboard-Autolayout"><a href="#Storyboard-Autolayout" class="headerlink" title="Storyboard + Autolayout"></a>Storyboard + Autolayout</h2><p><img src="https://farm8.staticflickr.com/7814/47452583652_3100528f2c_c.jpg" alt="alt text" title="在SB中加入一個View 再加入4 NSLayoutConstraint"></p>
+<p><img src="https://farm8.staticflickr.com/7801/33628656458_9d026dd3d7.jpg" alt="alt text" title="顯示如上"></p>
+<h2 id="XIB-Autolayout"><a href="#XIB-Autolayout" class="headerlink" title="XIB + Autolayout"></a>XIB + Autolayout</h2><p>首先在AppDelegate didFinishLaunchingWithOptions 中加入</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">func</span> <span class="title function_">application</span>(<span class="keyword">_</span> <span class="params">application</span>: <span class="type">UIApplication</span>, <span class="params">didFinishLaunchingWithOptions</span> <span class="params">launchOptions</span>: [<span class="type">UIApplication</span>.<span class="params">LaunchOptionsKey</span>: <span class="keyword">Any</span>]<span class="operator">?</span>) -&gt; <span class="type">Bool</span> &#123;</span><br><span class="line">    <span class="comment">// Override point for customization after application launch.</span></span><br><span class="line">    window<span class="operator">?</span>.backgroundColor <span class="operator">=</span> <span class="type">UIColor</span>.white</span><br><span class="line">    window <span class="operator">=</span> <span class="type">UIWindow</span>(frame: <span class="type">UIScreen</span>.main.bounds)</span><br><span class="line">    window<span class="operator">?</span>.makeKeyAndVisible()</span><br><span class="line">    window<span class="operator">?</span>.rootViewController <span class="operator">=</span> <span class="type">UINavigationController</span>(rootViewController: <span class="type">ViewController</span>())</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>然後在刪去 Main Interface 中的Main SB</p>
+<p>加入一個Xib</p>
+<p>加入Class ViewController</p>
+<p>把 Outlet View 連上</p>
+<p>最後加入 NSLayoutConstraint</p>
+<p><img src="https://farm8.staticflickr.com/7837/47454272782_26dff1d4c4.jpg" alt="alt text" title="如上"></p>
+<p><img src="https://farm8.staticflickr.com/7880/32564798097_2f976940e4.jpg" alt="alt text" title="如上"></p>
+<p><img src="https://farm8.staticflickr.com/7862/47507053391_024c013bb4.jpg" alt="alt text" title="如上"></p>
+<p><img src="https://farm8.staticflickr.com/7801/47507053431_6e041efa4a_b.jpg" alt="alt text" title="如上"></p>
+<p><img src="https://farm8.staticflickr.com/7814/47454272952_dd62c4e61a.jpg" alt="alt text" title="如上"></p>
+<h2 id="Pure-Code-Autolayout"><a href="#Pure-Code-Autolayout" class="headerlink" title="Pure Code + Autolayout"></a>Pure Code + Autolayout</h2><p>首先跟上面一樣在AppDelegate didFinishLaunchingWithOptions 中加入一段Code</p>
+<p>然後在刪去 Main Interface 中的Main SB</p>
+<p>最後在default的VC中的viewdidload中加入</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="keyword">func</span> <span class="title function_">viewDidLoad</span>() &#123;</span><br><span class="line"><span class="keyword">super</span>.viewDidLoad()</span><br><span class="line">    <span class="comment">// Do any additional setup after loading the view, typically from a nib.</span></span><br><span class="line">    <span class="keyword">self</span>.view.backgroundColor <span class="operator">=</span> .white</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> colorView <span class="operator">=</span> <span class="type">UIView</span>()</span><br><span class="line">    colorView.backgroundColor <span class="operator">=</span> .red</span><br><span class="line">    colorView.translatesAutoresizingMaskIntoConstraints <span class="operator">=</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">self</span>.view.addSubview(colorView)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">self</span>.view.addConstraint(<span class="type">NSLayoutConstraint</span>(item: colorView, attribute: .width, relatedBy: .equal, toItem: <span class="literal">nil</span>, attribute: .notAnAttribute, multiplier: <span class="number">1</span>, constant: <span class="number">100</span>))</span><br><span class="line">    <span class="keyword">self</span>.view.addConstraint(<span class="type">NSLayoutConstraint</span>(item: colorView, attribute: .height, relatedBy: .equal, toItem: <span class="literal">nil</span>, attribute: .notAnAttribute, multiplier: <span class="number">1</span>, constant: <span class="number">100</span>))</span><br><span class="line">    <span class="keyword">self</span>.view.addConstraint(<span class="type">NSLayoutConstraint</span>(item: colorView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: <span class="number">1</span>, constant: <span class="number">100</span>))</span><br><span class="line">    <span class="keyword">self</span>.view.addConstraint(<span class="type">NSLayoutConstraint</span>(item: colorView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: <span class="number">1</span>, constant: <span class="number">100</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://farm8.staticflickr.com/7895/47454870612_a409f91a41.jpg" alt="alt text" title="結果如上"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lxlxx.github.io/2019/03/19/Xcode-and-Git-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IT 學習筆記">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/19/Xcode-and-Git-2/" itemprop="url">Git 常用功能簡介</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-19T21:10:58-04:00">
+                2019-03-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="基本功能"><a href="#基本功能" class="headerlink" title="基本功能"></a>基本功能</h2><table>
+<thead>
+<tr>
+<th>no.</th>
+<th>function name</th>
+<th>output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>git init</td>
+<td>Init 當下目錄成Git 項目</td>
+</tr>
+<tr>
+<td>2</td>
+<td>git clone</td>
+<td>第一次 下載一個Git 項目至本地</td>
+</tr>
+<tr>
+<td>3</td>
+<td>git pull</td>
+<td>取回遠程倉庫修改至本地倉庫并合并至工作區</td>
+</tr>
+<tr>
+<td>4</td>
+<td>git add</td>
+<td>添加當下目錄文件之修改至暫存區</td>
+</tr>
+<tr>
+<td>5</td>
+<td>git commit</td>
+<td>提交暫存區修改至本地倉庫</td>
+</tr>
+<tr>
+<td>6</td>
+<td>git push</td>
+<td>推代碼至遠程倉庫</td>
+</tr>
+<tr>
+<td>7</td>
+<td>git diff</td>
+<td>顯示暫存區和工作區的差別</td>
+</tr>
+<tr>
+<td>8</td>
+<td>git checkout [someBranch]</td>
+<td>切換到指定分支</td>
+</tr>
+<tr>
+<td>9</td>
+<td>get fetch</td>
+<td>下載遠程倉庫到當下倉庫 但未至工作區</td>
+</tr>
+<tr>
+<td>10</td>
+<td>git merge</td>
+<td>合并指定分支至當下分支</td>
+</tr>
+<tr>
+<td>11</td>
+<td>git branch [someBranch]</td>
+<td>開一個新的分支</td>
+</tr>
+<tr>
+<td>12</td>
+<td>git log</td>
+<td>檢視提交的歷史記錄</td>
+</tr>
+<tr>
+<td>13</td>
+<td>git reflog</td>
+<td>檢視提交改變的所有歷史記錄</td>
+</tr>
+<tr>
+<td>13</td>
+<td>git reset [target]</td>
+<td>切換至指定歷史記錄</td>
+</tr>
+</tbody></table>
+<p>附上一張Git 工作流程圖 增加對以上功能的了解</p>
+<p><img src="https://image.slidesharecdn.com/2-150113000441-conversion-gate01/95/-12-638.jpg?cb=1421236602" alt="alt text" title="Git 工作流程圖"></p>
+<h2 id="Branch"><a href="#Branch" class="headerlink" title="Branch"></a>Branch</h2><p>Branch 可以說是Git 的殺手鐧</p>
+<p>因為Git 開分支並不用把整個Project都Copy一次</p>
+<p>而只是記錄變化 令Git 開分支的速度和開支比其他VCS要低很多</p>
+<p>開分支和切換的方法在上面的表格就有了</p>
+<h1 id="結尾"><a href="#結尾" class="headerlink" title="結尾"></a>結尾</h1><p>正在想下一篇到底寫繼續iOS or SQL </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lxlxx.github.io/2019/02/23/iOS-UI-build-in-SB-XIB-PureCode-Texture-ASDK-WEEX/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IT 學習筆記">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/23/iOS-UI-build-in-SB-XIB-PureCode-Texture-ASDK-WEEX/" itemprop="url">iOS UI build in SB XIB PureCode Texture(ASDK) WEEX</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-23T22:19:37-05:00">
+                2019-02-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="開篇"><a href="#開篇" class="headerlink" title="開篇"></a>開篇</h1><p>第二篇Blog 將會寫我最愛的iOS</p>
+<p>從最基本的建立GUI 開始</p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="XYWH"><a href="#XYWH" class="headerlink" title="XYWH"></a>XYWH</h2><p>在沒有Autolayout 的年代</p>
+<p>每個iOS都是用 X-position Y-position Width Height 建立起來的</p>
+<p>現在除了少數情況外 大部分的情況都不會再用了</p>
+<h2 id="Storyboard-Autolayout"><a href="#Storyboard-Autolayout" class="headerlink" title="Storyboard + Autolayout"></a>Storyboard + Autolayout</h2><p>大概是最多人使用的方法</p>
+<p>因為最易入門</p>
+<h2 id="XIB-Autolayout"><a href="#XIB-Autolayout" class="headerlink" title="XIB + Autolayout"></a>XIB + Autolayout</h2><p>在SB 出現前比較多人使用的方法</p>
+<p>現在也有不少人使用 因為在View 重用上比SB 簡單</p>
+<p>而且又比純碼多了一些可觀性</p>
+<h2 id="Pure-Code-Autolayout"><a href="#Pure-Code-Autolayout" class="headerlink" title="Pure Code + Autolayout"></a>Pure Code + Autolayout</h2><p>比較在乎View 重用和在Git 解決衝突比較簡單的方法</p>
+<h2 id="Other"><a href="#Other" class="headerlink" title="Other"></a>Other</h2><p>像是Texture (ASDK) WEEX 之類的Framework</p>
+<p>詳細使用方法可請教Google 大神</p>
+<p>基本上是少了一些功能 增加了速度的方案</p>
+<h1 id="結尾"><a href="#結尾" class="headerlink" title="結尾"></a>結尾</h1><p>下篇iOS 將用Code示範如何使用2.2-2.4三種方法</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lxlxx.github.io/2019/02/21/Xcode-and-Git/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IT 學習筆記">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/21/Xcode-and-Git/" itemprop="url">Git 歷史與簡介</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-21T22:29:02-05:00">
+                2019-02-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="開篇"><a href="#開篇" class="headerlink" title="開篇"></a>開篇</h1><p>Git 可以說是現在任何語言程式員必修的內功心法</p>
+<p>不論是一個人開發應用程式，或一群人團隊合作開發，少了VCS必然事倍功半</p>
+<p>因為是一套任何程序員都必需，而且在可見將來都是必需的工具</p>
+<p>所以決定第一篇Blog決定寫 Git 的簡單介紹</p>
+<p>Git 相關文會分開多篇貼出 深入淺出 從歷史介紹到實際使用上的體驗 方便個人閱讀</p>
+<h1 id="Git-歷史"><a href="#Git-歷史" class="headerlink" title="Git 歷史"></a>Git 歷史</h1><p>在Git 出現前比較有名的VCS有 CVS 和 SVN</p>
+<p>SVN 基本上是一個集中式VCS </p>
+<p>基本上就是只有一個倉庫一套Source Code</p>
+<p>每一個人要更新都必需要先連上唯一的倉庫</p>
+<p>好處是方便管理 壞處是沒備份 需要額外增加備份</p>
+<p>而Git 則同時有一個統一網上倉庫也有Local 個人的倉庫</p>
+<p>CVS 則有像不能改名之類的問題 和只支授文字檔</p>
+<p>但兩者後來都被Git 的 Branch 功能幹掉</p>
+<h1 id="結尾"><a href="#結尾" class="headerlink" title="結尾"></a>結尾</h1><p>第一篇Blog 小試牛刀 就寫到這裹</p>
+<p>下篇Git 的文章將介紹一下Git 的殺手級功能 Branch</p>
+<p>和Git 的一些基本功能</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
-  {% include '_partials/pagination.swig' %}
-{% endblock %}
+  
 
-{% block sidebar %}
-  {{ sidebar_template.render(false) }}
-{% endblock %}
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">懷谷 Ray yu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
