@@ -88,7 +88,7 @@
 <meta property="og:locale">
 <meta property="og:image" content="https://www.mdpi.com/electronics/electronics-09-01348/article_deploy/html/images/electronics-09-01348-g005-550.jpg">
 <meta property="article:published_time" content="2022-05-21T05:50:54.000Z">
-<meta property="article:modified_time" content="2022-05-21T09:28:19.159Z">
+<meta property="article:modified_time" content="2023-07-12T23:42:23.193Z">
 <meta property="article:author" content="懷谷 Ray yu">
 <meta property="article:tag" content="SQL">
 <meta name="twitter:card" content="summary">
@@ -367,12 +367,8 @@
 <td>Char(100)</td>
 <td>100 bytes</td>
 </tr>
-<tr>
-<td>Note: char was used in place of varchar to allow for an accurate size on disk value. This sample database contains five million rows and is unindexed. The performance of several queries will now be analyzed. These are a query using the id (a sorted key field) and one using the firstName (a non-key unsorted field).</td>
-<td></td>
-<td></td>
-</tr>
 </tbody></table>
+<p>Note: char was used in place of varchar to allow for an accurate size on disk value. This sample database contains five million rows and is unindexed. The performance of several queries will now be analyzed. These are a query using the id (a sorted key field) and one using the firstName (a non-key unsorted field).</p>
 <h1 id="Example-1-sorted-vs-unsorted-fields"><a href="#Example-1-sorted-vs-unsorted-fields" class="headerlink" title="Example 1 - sorted vs unsorted fields"></a>Example 1 - sorted vs unsorted fields</h1><p>Given our sample database of r &#x3D; 5,000,000 records of a fixed size giving a record length of R &#x3D; 204 bytes and they are stored in a table using the MyISAM engine which is using the default block size B &#x3D; 1,024 bytes. The blocking factor of the table would be bfr &#x3D; (B&#x2F;R) &#x3D; 1024&#x2F;204 &#x3D; 5 records per disk block. The total number of blocks required to hold the table is N &#x3D; (r&#x2F;bfr) &#x3D; 5000000&#x2F;5 &#x3D; 1,000,000 blocks.</p>
 <p>A linear search on the id field would require an average of N&#x2F;2 &#x3D; 500,000 block accesses to find a value, given that the id field is a key field. But since the id field is also sorted, a binary search can be conducted requiring an average of log2 1000000 &#x3D; 19.93 &#x3D; 20 block accesses. Instantly we can see this is a drastic improvement.</p>
 <p>Now the firstName field is neither sorted nor a key field, so a binary search is impossible, nor are the values unique, and thus the table will require searching to the end for an exact N &#x3D; 1,000,000 block accesses. It is this situation that indexing aims to correct.</p>
